@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { useCartStore } from '@/lib/store/cartStore';
 import EmptyState from '@/components/EmptyState';
@@ -16,6 +16,8 @@ export default function Cart() {
   const deliveryFee = 7.00;
   const discount = isPromoApplied ? 15.00 : 0.00;
   const total = subtotal + deliveryFee - discount;
+
+  useEffect(() => { document.title = 'سلة المشتريات | دري فري'; }, []);
 
   if (cartItems.length === 0) {
     return (

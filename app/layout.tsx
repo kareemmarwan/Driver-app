@@ -5,8 +5,19 @@ import ClientWrapper from "./(Screens)/ClientWrapper";
 import ErrorBoundaryWrapper from "../components/ErrorBoundaryWrapper";
 import QueryProvider from "../lib/hooks/useQueryProvider";
 export const metadata: Metadata = {
-  title: "دري فري - Dreefree",
-  description: "تطبيق توصيل الطلبات",
+  title: {
+    default: 'دري فري - Dreefree',
+    template: '%s | دري فري',
+  },
+  description: 'تطبيق توصيل الطلبات في فلسطين - طرد، هدايا، مستندات، مشتريات، مطاعم',
+  keywords: ['توصيل', 'فلسطين', 'غزة', 'دري فري', 'Dreefree', 'طلب توصيل'],
+  openGraph: {
+    title: 'دري فري - Dreefree',
+    description: 'تطبيق توصيل الطلبات في فلسطين',
+    type: 'website',
+    locale: 'ar_AR',
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

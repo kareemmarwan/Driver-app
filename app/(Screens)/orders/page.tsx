@@ -40,6 +40,7 @@ export default function OrdersPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'طلباتي | دري فري';
     const t = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);

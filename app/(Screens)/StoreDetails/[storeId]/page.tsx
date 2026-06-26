@@ -28,6 +28,7 @@ export default function StoreDetails() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'مخبز الموقد الذهبي | دري فري';
     const t = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);

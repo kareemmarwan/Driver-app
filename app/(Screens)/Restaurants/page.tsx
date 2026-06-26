@@ -110,6 +110,7 @@ export default function Restaurants() {
   );
 
   useEffect(() => {
+    document.title = 'المطاعم والمتاجر | دري فري';
     const t = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);

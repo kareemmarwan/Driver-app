@@ -47,6 +47,7 @@ export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
+    document.title = PRODUCT.name + ' | دري فري';
     const t = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);
