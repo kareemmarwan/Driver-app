@@ -9,6 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "success": "#2fe378",
+        "warning": "#f59e0b",
+        "info": "#3b82f6",
         "secondary": "#5f5e5e",
         "inverse-on-surface": "#eaf3e7",
         "on-tertiary-fixed": "#0b1c30",
@@ -70,6 +73,9 @@ module.exports = {
         "margin-desktop": "32px",
         "xl": "32px"
       },
+    },
+    fontFamily: {
+      cairo: ["Cairo", "system-ui", "sans-serif"],
     },
   },
   plugins: [],

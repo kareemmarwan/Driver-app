@@ -14,6 +14,10 @@ const HIDE_TABBAR_PATTERNS = [
   "/FilterDeliveryAreaPage",
   "/StoreDetails/",
   "/ProductDetailsPage/",
+  "/edit-profile",
+  "/settings",
+  "/login",
+  "/register",
 ];
 
 const HIDE_TABBAR_ROUTES = new Set(HIDE_TABBAR_PATTERNS.filter(p => !p.endsWith("/")));

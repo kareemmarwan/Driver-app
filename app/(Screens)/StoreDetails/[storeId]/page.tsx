@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import StoreDetailsSkeleton from "@/components/skeletons/StoreDetailsSkeleton";
+import { useWishlistStore } from '@/lib/store/wishlistStore';
 
 const CATEGORIES = ["الكل", "خبز طازج", "معجنات", "كيك وحلويات", "وجبات الإفطار"];
 
@@ -33,7 +34,7 @@ export default function StoreDetails() {
     return () => clearTimeout(t);
   }, []);
   const [activeCategory, setActiveCategory] = useState("الكل");
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isFavorite: isWishlisted, toggleItem } = useWishlistStore();
   const [cartCount, setCartCount] = useState(2);
   const [totalPrice, setTotalPrice] = useState("42.50 ₪");
 
@@ -67,12 +68,12 @@ export default function StoreDetails() {
             <span className="text-xl material-symbols-outlined">share</span>
           </button>
           <button
-            onClick={() => setIsFavorite(!isFavorite)}
+            onClick={() => toggleItem({ id: Number(params.storeId), name: 'مخبز الموقد الذهبي', image: BEST_SELLERS[0]?.image || '', price: '' })}
             className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm active:scale-95 border border-[#bbcbba]/20 hover:bg-white"
           >
             <span
-              className={`material-symbols-outlined text-xl transition-colors ${isFavorite ? 'text-red-500' : 'text-[#7f8e7e]'}`}
-              style={{ fontVariationSettings: `'FILL' ${isFavorite ? 1 : 0}` }}
+              className={`material-symbols-outlined text-xl transition-colors ${isWishlisted(Number(params.storeId)) ? 'text-red-500' : 'text-[#7f8e7e]'}`}
+              style={{ fontVariationSettings: `'FILL' ${isWishlisted(Number(params.storeId)) ? 1 : 0}` }}
             >
               favorite
             </span>
@@ -195,7 +196,20 @@ export default function StoreDetails() {
           <div className="flex gap-4 px-4 pb-3 overflow-x-auto no-scrollbar sm:px-6">
             {BEST_SELLERS.map((item) => (
               <div key={item.id} className="min-w-[190px] bg-white rounded-[24px] shadow-[0px_6px_24px_rgba(0,109,52,0.02)] overflow-hidden flex-shrink-0 border border-[#bbcbba]/20 group transition-all duration-300 hover:shadow-[0px_10px_32px_rgba(0,109,52,0.05)]">
-                <div className="w-full h-32 transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${item.image}')` }} />
+                <div className="relative w-full h-32">
+                  <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${item.image}')` }} />
+                  <button
+                    onClick={() => toggleItem({ id: item.id, name: item.name, image: item.image, price: item.price, storeName: 'مخبز الموقد الذهبي' })}
+                    className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
+                  >
+                    <span
+                      className={`material-symbols-outlined text-[16px] ${isWishlisted(item.id) ? 'text-red-500' : 'text-[#7f8e7e]'}`}
+                      style={{ fontVariationSettings: `'FILL' ${isWishlisted(item.id) ? 1 : 0}` }}
+                    >
+                      favorite
+                    </span>
+                  </button>
+                </div>
                 <div className="p-3.5">
                   <h5 className="text-xs font-bold truncate text-slate-800 group-hover:text-[#006d34] transition-colors">{item.name}</h5>
                   <div className="flex items-center justify-between mt-3">
@@ -217,7 +231,20 @@ export default function StoreDetails() {
             {ALL_PRODUCTS.map((product) => (
               <div key={product.id} className="bg-white rounded-[24px] shadow-[0px_6px_24px_rgba(0,109,52,0.02)] overflow-hidden border border-[#bbcbba]/20 group transition-all duration-300 hover:shadow-[0px_10px_32px_rgba(0,109,52,0.05)] flex flex-col justify-between">
                 <div>
-                  <div className="w-full transition-transform duration-500 bg-center bg-cover h-36 group-hover:scale-102" style={{ backgroundImage: `url('${product.image}')` }} />
+                  <div className="relative w-full h-36">
+                    <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${product.image}')` }} />
+                    <button
+                      onClick={() => toggleItem({ id: product.id, name: product.name, image: product.image, price: product.price, storeName: 'مخبز الموقد الذهبي' })}
+                      className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
+                    >
+                      <span
+                        className={`material-symbols-outlined text-[16px] ${isWishlisted(product.id) ? 'text-red-500' : 'text-[#7f8e7e]'}`}
+                        style={{ fontVariationSettings: `'FILL' ${isWishlisted(product.id) ? 1 : 0}` }}
+                      >
+                        favorite
+                      </span>
+                    </button>
+                  </div>
                   <div className="p-3.5 pb-0">
                     <h5 className="text-xs font-bold text-slate-800 group-hover:text-[#006d34] transition-colors line-clamp-2 min-h-[32px]">{product.name}</h5>
                     <div className="flex items-center gap-0.5 mt-1 bg-slate-50 w-fit px-1.5 py-0.5 rounded-[6px] border border-slate-100">

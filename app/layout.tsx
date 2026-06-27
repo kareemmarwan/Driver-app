@@ -4,6 +4,10 @@ import TabBarWrapper from "../Component/TabBarWrapper";
 import ClientWrapper from "./(Screens)/ClientWrapper";
 import ErrorBoundaryWrapper from "../components/ErrorBoundaryWrapper";
 import QueryProvider from "../lib/hooks/useQueryProvider";
+import SessionProvider from "../components/SessionProvider";
+import ThemeProvider from "../components/ThemeProvider";
+import PWARegister from "../components/PWARegister";
+import NotificationRequest from "../components/NotificationRequest";
 export const metadata: Metadata = {
   title: {
     default: 'دري فري - Dreefree',
@@ -38,18 +42,26 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#006d34" />
       </head>
       <body className="min-h-screen flex flex-col bg-[#F8FAFC]" style={{ fontFamily: "'Cairo', system-ui, -apple-system, sans-serif" }} suppressHydrationWarning={true}>
 
-        <QueryProvider>
-          <ErrorBoundaryWrapper>
-            <TabBarWrapper>
-              <ClientWrapper>
-                {children}
-              </ClientWrapper>
-            </TabBarWrapper>
-          </ErrorBoundaryWrapper>
-        </QueryProvider>
+        <PWARegister />
+        <ThemeProvider>
+        <SessionProvider>
+          <NotificationRequest />
+          <QueryProvider>
+            <ErrorBoundaryWrapper>
+              <TabBarWrapper>
+                <ClientWrapper>
+                  {children}
+                </ClientWrapper>
+              </TabBarWrapper>
+            </ErrorBoundaryWrapper>
+          </QueryProvider>
+        </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

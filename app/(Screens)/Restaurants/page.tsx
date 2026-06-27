@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from "next/link";
 import RestaurantsSkeleton from "@/components/skeletons/RestaurantsSkeleton";
 import EmptyState from '@/components/EmptyState';
+import { useWishlistStore } from '@/lib/store/wishlistStore';
 
 // بيانات تجريبية للمطاعم مترجمة للعربية
 const RESTAURANTS = [
@@ -102,8 +103,8 @@ const CATEGORIES = ["الكل", "شاورما", "مشويات", "بيتزا", "�
 export default function Restaurants() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("الكل");
-  const [favorites, setFavorites] = useState<number[]>([2]);
   const [searchQuery, setSearchQuery] = useState('');
+  const { isFavorite, toggleItem } = useWishlistStore();
 
   const filteredRestaurants = RESTAURANTS_EXTENDED.filter(r =>
     r.name.includes(searchQuery) || r.tags.includes(searchQuery)
@@ -114,14 +115,6 @@ export default function Restaurants() {
     const t = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(t);
   }, []);
-
-  const toggleFavorite = (id: number) => {
-    if (favorites.includes(id)) {
-      setFavorites(favorites.filter(favId => favId !== id));
-    } else {
-      setFavorites([...favorites, id]);
-    }
-  };
 
   if (isLoading) return <RestaurantsSkeleton />;
 
@@ -206,7 +199,7 @@ export default function Restaurants() {
           ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 sm:gap-6">
             {filteredRestaurants.map((restaurant) => {
-              const isFav = favorites.includes(restaurant.id);
+              const isFav = isFavorite(restaurant.id);
               return (
                 <Link
                   key={restaurant.id}
@@ -235,7 +228,7 @@ export default function Restaurants() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        toggleFavorite(restaurant.id);
+                        toggleItem({ id: restaurant.id, name: restaurant.name, image: restaurant.image, price: '', storeName: '' });
                       }}
                       className="absolute flex items-center justify-center text-white transition-all rounded-full w-9 h-9 sm:w-10 sm:h-10 top-3 left-3 bg-black/20 backdrop-blur-sm hover:bg-white hover:text-red-500 hover:scale-105 active:scale-95"
                     >
@@ -405,7 +398,7 @@ export default function Restaurants() {
 //   const [favorites, setFavorites] = useState<number[]>([2]);
 
 //   const toggleFavorite = (id: number) => {
-//     if (favorites.includes(id)) {
+//     if (isFavorite(id)) {
 //       setFavorites(favorites.filter(favId => favId !== id));
 //     } else {
 //       setFavorites([...favorites, id]);
@@ -486,7 +479,7 @@ export default function Restaurants() {
 //         <section className="px-4 pb-24 mt-6 sm:px-6 lg:px-8 sm:mt-8 lg:pb-12">
 //           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 sm:gap-6">
 //             {restaurantsList.map((restaurant) => {
-//               const isFav = favorites.includes(restaurant.id);
+//               const isFav = isFavorite(restaurant.id);
 //               return (
 //                 <div
 //                   key={restaurant.id}
@@ -702,7 +695,7 @@ export default function Restaurants() {
 // //   const [favorites, setFavorites] = useState<number[]>([2]);
 
 // //   const toggleFavorite = (id: number) => {
-// //     if (favorites.includes(id)) {
+// //     if (isFavorite(id)) {
 // //       setFavorites(favorites.filter(favId => favId !== id));
 // //     } else {
 // //       setFavorites([...favorites, id]);
@@ -783,7 +776,7 @@ export default function Restaurants() {
 // //         <section className="px-4 pb-20 mt-6 sm:px-6 lg:px-8 sm:mt-8 sm:pb-24 lg:pb-8">
 // //           <div className="grid max-w-6xl grid-cols-1 gap-4 mx-auto md:grid-cols-2 lg:grid-cols-3 sm:gap-6">
 // //             {restaurantsList.map((restaurant) => {
-// //               const isFav = favorites.includes(restaurant.id);
+// //               const isFav = isFavorite(restaurant.id);
 // //               return (
 // //                 <div
 // //                   key={restaurant.id}
