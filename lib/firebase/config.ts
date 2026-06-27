@@ -9,7 +9,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const messaging = typeof window !== 'undefined' ? getMessaging(app) : null;
+const hasFirebaseConfig = firebaseConfig.apiKey && firebaseConfig.projectId;
+
+const app = hasFirebaseConfig ? (getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]) : null;
+const messaging = app && typeof window !== 'undefined' ? getMessaging(app) : null;
 
 export { app, messaging, getToken, onMessage };
