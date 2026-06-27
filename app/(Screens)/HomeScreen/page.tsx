@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCartStore } from "@/lib/store/cartStore";
 
 export default function HomeScreen() {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const totalItems = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
 
   // منطق إخفاء وإظهار الهيدر بسلاسة عند السكرول (Sticky Header)
   useEffect(() => {
@@ -63,7 +65,18 @@ export default function HomeScreen() {
             <span className="text-[14px] font-bold text-[#151e16]">أحمد</span>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
+          <Link
+            href="/Cart"
+            className="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dce5d9] transition-colors active:scale-95"
+          >
+            <span className="material-symbols-outlined text-[#151e16]">shopping_cart</span>
+            {totalItems > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-rose-500 text-white text-[10px] font-black min-w-[18px] h-[18px] flex items-center justify-center rounded-full shadow-sm">
+                {totalItems > 99 ? "99+" : totalItems}
+              </span>
+            )}
+          </Link>
           <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dce5d9] transition-colors active:scale-95">
             <span className="material-symbols-outlined text-[#151e16]">notifications</span>
           </button>
