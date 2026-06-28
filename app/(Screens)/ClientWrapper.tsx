@@ -1,29 +1,47 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import SplashScreen from "./SplashScreen";
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const alreadyLoaded = sessionStorage.getItem("splashShown");
+  const hideSplash = useCallback(() => {
+    setLoading(false);
+  }, []);
 
-    if (alreadyLoaded) {
-      setLoading(false);
-      return;
+  useEffect(() => {
+    let isMounted = true;
+
+    try {
+      const alreadyLoaded = sessionStorage.getItem("splashShown");
+      if (alreadyLoaded && isMounted) {
+        setLoading(false);
+        return;
+      }
+    } catch {
+      // sessionStorage may be blocked (incognito, etc.)
     }
 
     const timer = setTimeout(() => {
-      sessionStorage.setItem("splashShown", "true");
-      setLoading(false);
-    }, 2000);
+      if (isMounted) {
+        try {
+          sessionStorage.setItem("splashShown", "true");
+        } catch {
+          // sessionStorage may be blocked
+        }
+        setLoading(false);
+      }
+    }, 1500);
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+    };
+  }, [hideSplash]);
 
   if (loading) {
-    return <SplashScreen />;
+    return <SplashScreen onReady={hideSplash} />;
   }
 
   return <>{children}</>;

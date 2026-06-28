@@ -2,55 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useCartStore } from '@/lib/store/cartStore';
 import ProductDetailsSkeleton from "@/components/skeletons/ProductDetailsSkeleton";
-
-const PRODUCT = {
-  id: 1,
-  name: 'لفافة دجاج بالزعتر والبهارات',
-  description: 'لفافة دجاج مشوي على الفحم مع مزيج من الزعتر الطازج والبهارات العربية، ملفوفة بخبز الصاج الطري. وجبة متكاملة بنكهة فلسطينية أصيلة.',
-  price: 32.00,
-  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBqY8R1dlKX28szKvlNi5j8s6p2Njr5GwhJbWXj-dNmS52v1Mu4OrGx8H7K2WNk5RQybeU3rpbiZZfWtWkfLyosFQm_2tvqZLlGMWCVhlh0yUkzbE-7DpQmu_1-GN1AikWRkm2v2DIgZmo3ExrFpaElIGUkJj5XP9d8A3ZDesxOAPIxGlxX6dFq6KN00JUKnmY5vM_NZygq4w-hujEWSsXH1EVxEtFAon8YcY2XLxVle0LNaDPU8_Q2mLwH5NWhAgNTW6lBx9Wbkaw',
-  rating: 4.7,
-};
-
-const SIZES = [
-  { label: 'صغير', suffix: '', price: 0 },
-  { label: 'وسط', suffix: '+ ٥ ₪', price: 5 },
-  { label: 'كبير', suffix: '+ ١٠ ₪', price: 10 },
-];
-
-const EXTRAS = {
-  sauces: [
-    { id: 's1', name: 'صلصة طحينية', price: 2.00 },
-    { id: 's2', name: 'صلصة حارة', price: 1.50 },
-    { id: 's3', name: 'صلصة ثومية', price: 2.00 },
-  ],
-  drinks: [
-    { id: 'd1', name: 'عصير ليمون نعناع', price: 5.00 },
-    { id: 'd2', name: 'مشروب غازي', price: 3.00 },
-    { id: 'd3', name: 'ماء معدني', price: 1.50 },
-  ],
-  complements: [
-    { id: 'c1', name: 'بطاطس مقلية', price: 6.00 },
-    { id: 'c2', name: 'سلطة خضراء', price: 5.00 },
-    { id: 'c3', name: 'حمص', price: 4.00 },
-  ],
-};
+import { getProductById, SIZES, EXTRAS } from '@/lib/data';
 
 type ExtraCategory = 'sauces' | 'drinks' | 'complements';
 
 export default function ProductDetailsPage() {
   const params = useParams<{ productId: string }>();
+  const searchParams = useSearchParams();
+  const storeId = searchParams.get('storeId') || '1';
+  const productId = Number(params.productId) || 1;
+  const product = getProductById(productId);
+
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    document.title = PRODUCT.name + ' | دري فري';
+    if (product) document.title = product.name + ' | دري فري';
     const t = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(t);
-  }, []);
+  }, [product]);
   const [selectedSize, setSelectedSize] = useState(0);
   const [selectedExtras, setSelectedExtras] = useState<Record<string, boolean>>({});
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -58,38 +31,6 @@ export default function ProductDetailsPage() {
   const toggleExtra = (id: string) => {
     setSelectedExtras(prev => ({ ...prev, [id]: !prev[id] }));
   };
-
-  const extrasTotal = Object.entries(selectedExtras).reduce((sum, [id, selected]) => {
-    if (!selected) return sum;
-    for (const cat of Object.keys(EXTRAS) as ExtraCategory[]) {
-      const item = (EXTRAS[cat] as { id: string; price: number }[]).find(e => e.id === id);
-      if (item) return sum + item.price;
-    }
-    return sum;
-  }, 0);
-
-  const basePrice = PRODUCT.price + SIZES[selectedSize].price;
-  const totalPrice = (basePrice + extrasTotal) * quantity;
-
-  const addToCart = () => {
-    useCartStore.getState().addItem({
-      id: PRODUCT.id,
-      name: PRODUCT.name,
-      price: totalPrice / quantity,
-      quantity,
-      image: PRODUCT.image,
-      meta: SIZES[selectedSize].label,
-    });
-    setShowSnackbar(true);
-    setTimeout(() => setShowSnackbar(false), 2000);
-  };
-
-  const sectionTitle = (icon: string, title: string) => (
-    <div className="flex items-center gap-1.5 mb-3">
-      <span className="material-symbols-outlined text-[#006d34] text-xl">{icon}</span>
-      <h3 className="text-sm font-bold text-[#151e16]">{title}</h3>
-    </div>
-  );
 
   if (isLoading) {
     return (
@@ -106,10 +47,53 @@ export default function ProductDetailsPage() {
     );
   }
 
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center" dir="rtl">
+        <div className="text-center">
+          <p className="text-[#5f5e5e]">المنتج غير موجود</p>
+          <Link href="/" className="text-[#006d34] font-bold mt-2 inline-block">العودة للرئيسية</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const extrasTotal = Object.entries(selectedExtras).reduce((sum, [id, selected]) => {
+    if (!selected) return sum;
+    for (const cat of Object.keys(EXTRAS) as ExtraCategory[]) {
+      const item = (EXTRAS[cat] as { id: string; price: number }[]).find(e => e.id === id);
+      if (item) return sum + item.price;
+    }
+    return sum;
+  }, 0);
+
+  const basePrice = product.price + SIZES[selectedSize].price;
+  const totalPrice = (basePrice + extrasTotal) * quantity;
+
+  const addToCart = () => {
+    useCartStore.getState().addItem({
+      id: product.id,
+      name: product.name,
+      price: totalPrice / quantity,
+      quantity,
+      image: product.image,
+      meta: SIZES[selectedSize].label,
+    });
+    setShowSnackbar(true);
+    setTimeout(() => setShowSnackbar(false), 2000);
+  };
+
+  const sectionTitle = (icon: string, title: string) => (
+    <div className="flex items-center gap-1.5 mb-3">
+      <span className="material-symbols-outlined text-[#006d34] text-xl">{icon}</span>
+      <h3 className="text-sm font-bold text-[#151e16]">{title}</h3>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#151e16] antialiased pb-32" dir="rtl">
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white/95 backdrop-blur-xl border-b border-[#bbcbba]/20">
-        <Link href="/StoreDetails/1" className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-[#006d34] hover:bg-gray-50 active:scale-95 border border-[#bbcbba]/20">
+        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-[#006d34] hover:bg-gray-50 active:scale-95 border border-[#bbcbba]/20">
           <span className="text-2xl material-symbols-outlined">arrow_back</span>
         </Link>
         <h1 className="text-sm font-bold">تفاصيل المنتج</h1>
@@ -118,15 +102,15 @@ export default function ProductDetailsPage() {
 
       <main className="pt-20 px-4 max-w-lg mx-auto">
         <div className="w-full aspect-square rounded-3xl overflow-hidden bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-[#bbcbba]/10">
-          <img src={PRODUCT.image} alt={PRODUCT.name} className="object-cover w-full h-full" />
+          <img src={product.image} alt={product.name} className="object-cover w-full h-full" />
         </div>
 
         <div className="mt-4">
-          <h2 className="text-xl font-bold">{PRODUCT.name}</h2>
-          <p className="text-sm text-[#5f5e5e] mt-1 leading-relaxed">{PRODUCT.description}</p>
+          <h2 className="text-xl font-bold">{product.name}</h2>
+          <p className="text-sm text-[#5f5e5e] mt-1 leading-relaxed">{product.description}</p>
           <div className="flex items-center gap-1.5 mt-2">
             <span className="material-symbols-outlined text-[#FFD700] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="text-sm font-bold">{PRODUCT.rating}</span>
+            <span className="text-sm font-bold">{product.rating}</span>
           </div>
         </div>
 

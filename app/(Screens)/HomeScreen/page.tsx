@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/lib/store/cartStore";
+import { HOME_SERVICES } from "@/lib/data";
 
 export default function HomeScreen() {
   const [showHeader, setShowHeader] = useState(true);
@@ -27,15 +28,7 @@ export default function HomeScreen() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // مصفوفة الخدمات مع ترجمة العناوين للغة العربية
-  const services = [
-    { id: "package", icon: "package_2", label: "طرد بريدي" ,link:'/Restaurants'},
-    { id: "gift", icon: "card_giftcard", label: "هدية" ,link:'/Restaurants'},
-    { id: "docs", icon: "description", label: "مستندات" ,link:'/Restaurants'},
-    { id: "shopping", icon: "shopping_bag", label: "تسوق" ,link:'/Restaurants'},
-    { id: "food", icon: "restaurant", label: "طعام" ,link:'/Restaurants'},
-    { id: "other", icon: "more_horiz", label: "أخرى" ,link:'/Restaurants'},
-  ];
+  const services = HOME_SERVICES;
 
   return (
     // هنا قمنا بإضافة كلاس الخط cairoFont.className وتغيير اتجاه النص إلى RTL ليتناسب مع اللغة العربية

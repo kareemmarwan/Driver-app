@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// استيراد خط Cairo من Next.js
+import { useOrderStore } from '@/lib/store/orderStore';
 import { Cairo } from "next/font/google";
 
 const cairoFont = Cairo({
@@ -14,8 +14,13 @@ const cairoFont = Cairo({
 
 export default function OrderConfirmedScreen() {
   const [statusText, setStatusText] = useState("جاري البحث عن سائق...");
+  const currentOrder = useOrderStore((s) => s.currentOrder);
+  const activeOrders = useOrderStore((s) => s.activeOrders);
+  const latestOrder = activeOrders[0];
+  const orderId = latestOrder?.id || '#AG-82931-DL';
+  const totalPrice = currentOrder?.total || 42.50;
+  const eta = latestOrder?.eta || '25-35 دقيقة';
 
-  // مصفوفة العبارات التفاعلية أثناء البحث عن سائق
   const phrases = [
     "جاري البحث عن سائق...",
     "يتم الآن الاتصال بالمندوب...",
@@ -118,11 +123,11 @@ export default function OrderConfirmedScreen() {
               </div>
               <div className="text-right">
                 <p className="text-[11px] text-[#5f5e5e]">رقم الطلب</p>
-                <p className="text-[14px] font-bold text-[#151e16]">#AG-82931-DL</p>
+                <p className="text-[14px] font-bold text-[#151e16]">{orderId}</p>
               </div>
             </div>
             <button
-              onClick={() => navigator.clipboard.writeText("#AG-82931-DL")}
+              onClick={() => navigator.clipboard.writeText(orderId)}
               className="text-[#006d34] hover:bg-[#00d26a]/10 p-2 rounded-full transition-colors active:scale-90"
               title="نسخ رقم الطلب"
             >
@@ -134,13 +139,13 @@ export default function OrderConfirmedScreen() {
             <p className="text-[11px] text-[#5f5e5e] mb-1">الوقت المتوقع لوصوله</p>
             <div className="flex items-center gap-1">
               <span className="material-symbols-outlined text-sm text-[#006d34]">schedule</span>
-              <p className="text-[14px] font-bold text-[#151e16]">25-35 دقيقة</p>
+              <p className="text-[14px] font-bold text-[#151e16]">{eta}</p>
             </div>
           </div>
 
           <div className="bg-[#edf6ea] rounded-2xl p-4 border border-[#bbcbba]/20 text-right">
             <p className="text-[11px] text-[#5f5e5e] mb-1">إجمالي الحساب</p>
-            <p className="text-[14px] font-bold text-[#151e16]">42.50 $</p>
+            <p className="text-[14px] font-bold text-[#151e16]">₪{totalPrice.toFixed(2)}</p>
           </div>
         </div>
 

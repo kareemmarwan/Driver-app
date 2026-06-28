@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import Image from "next/image";
 
-export default function SplashScreen() {
+export default function SplashScreen({ onReady }: { onReady?: () => void }) {
   const [progress, setProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const glowRef1 = useRef<HTMLDivElement>(null);
@@ -26,20 +25,21 @@ export default function SplashScreen() {
         } else {
           setTimeout(() => {
             setIsReady(true);
-          }, 500);
+            onReady?.();
+          }, 300);
           return 100;
         }
       });
     };
 
-    // بدء المحاكاة بعد 800ms من تحميل المكون
+    // بدء المحاكاة بعد 400ms من تحميل المكون
     const startTimeout = setTimeout(simulateProgress, 400);
 
     return () => {
       clearTimeout(startTimeout);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [onReady]);
 
   // 2. حركة توهج الخلفية مع الماوس (Parallax Effect)
   useEffect(() => {
@@ -80,14 +80,9 @@ export default function SplashScreen() {
         {/* شعار البراند */}
         <div className="mb-xl animate-logo animate-entry">
           <div className="relative group">
-            <Image
-              alt="Dreefree Logo"
-              src="https://lh3.googleusercontent.com/aida/AP1WRLuFTV1kyg-SOdb3WTGVYMR8mteKkOECkjk49I3gJirXRy5uL4yYSItB9leXuo_RThdBOZ4iu2bcFei3h7wOEbWJIEYyME05hK-Y0doeNwjvqtVgIIUa9ZRzw9H-uFKuIrePRzBd3L1YnA1vg7wmnVoGtlONSFHEXuWPLgu6g6PAJx-xYtl1g_EVxke0A3LcnabvOUZPmulx8bOo7Wv_eyvST2K5v9sXieRexScZKEDHQfs-3sqvCg1fxA" // يمكنك استبداله بمسار محلي مثل /logo.png
-              width={128}
-              height={128}
-              className="object-contain w-24 h-24 md:w-32 md:h-32 drop-shadow-xl rounded-xl"
-              priority
-            />
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-primary/20 to-primary-container/30 flex items-center justify-center drop-shadow-xl">
+              <span className="material-symbols-outlined text-[64px] md:text-[80px] text-primary">local_shipping</span>
+            </div>
             {/* تأثير التوهج خلف الشعار */}
             <div className="absolute inset-0 transition-all duration-700 scale-125 rounded-full bg-primary-container/20 blur-2xl -z-10 group-hover:bg-primary-container/30"></div>
           </div>

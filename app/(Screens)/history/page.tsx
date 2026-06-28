@@ -2,51 +2,7 @@
 
 import { useState } from "react";
 import EmptyState from '@/components/EmptyState';
-
-const HISTORY_ORDERS = [
-  {
-    id: "DF-7798",
-    store: "برجر باي",
-    date: "اليوم",
-    time: "١٠:٣٠ ص",
-    price: "₪٤٥.٠٠",
-    items: "٢ برجر دبل تشيز",
-    status: "مكتمل",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAEjiXGVgiWYiNH30d4My8TnR8k8HuD1itldnjPypTW1M5PDTgEpZQ5-VfmX00r3Q7UlK2bLyJzIK4Ecg1jzR6dKGveALeMfMLi8dBgMZCgNlWnTF3CYgZpMo5j-UWyl_bqryi8vsvfCsvDzSABrUyZbBV1i5jfYskYpObLyrNNHKAboj7or_PNvdmwKMZCvkjH-svugQnbYQ9S2VwYwssAd23jV_nQ1EBM84esyfRTt-d-mhJcAO4mpqMY5pKwtMkxk5cMCb7cIaQ",
-  },
-  {
-    id: "DF-7765",
-    store: "مطعم جنين",
-    date: "أمس",
-    time: "٨:١٥ م",
-    price: "₪٣٢.٠٠",
-    items: "شاورما دجاج + حمص",
-    status: "مكتمل",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBeKeM6PJIL8MxHyVBXFn3hl0h9TDLPD19RUWIoAthfg6V6f0QuuY-4Jek9w-dDsWMTcuRyq96QNF6htdGZXcHXGHUPuaphCh0fe5O6NGHE4fpWF2H_v4mNXSoOUQWFZHFM0L9fhHCLy7wlvpjurOjVn6rVCy7pdx0idutZ9Trs14ODG6Rk04XHnHtCo5pNtAL0DfaFONZKG6BfcfmBLQAkxSsZfM2jn6lwdzBHzvtGLx3q2CxSf6rOl5QLfofJjaxpPHHedxKSN50",
-  },
-  {
-    id: "DF-7742",
-    store: "بيتزا روما",
-    date: "٢٠ يونيو",
-    time: "٩:٠٠ م",
-    price: "₪٥٦.٠٠",
-    items: "بيتزا عائلية + مشروبات",
-    status: "مكتمل",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBMOv2FcGoPDF08R1EwmW5UxE2Ra7ciMz4Sb-F2IFLzSw-yzL4NBFuceDRdADyQ6-TlTGJD915bIUksyBuPc7fds6ePjTb6iX1Fg8b8onu52ZilphRb5rnwcPNO7sA4A01bhPh6Hs3aJ-RxK9oo0FmENVuAxYE2FmPD4af5b6EK3wshaO97M8s2H2uYe-tcSySYYUuNKGy9sDdmVF24Fs4RCZJmWSWxfvGh-pdjm_yTap7REjg90YM470NzzW5QMfMw7SiD0L1IV18",
-  },
-  {
-    id: "DF-7718",
-    store: "سوق الشام المركزي",
-    date: "١٥ يونيو",
-    time: "٢:٣٠ م",
-    price: "₪٨٩.٠٠",
-    items: "بقالة أسبوعية",
-    status: "مكتمل",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAmuzTG4P4reMUHan30yV6qhQvDSE5PAlsvJ6ujIWvn_lxAYIT22R6QfTciMLTg2Lihv864BSNalzZ8okWVOt3cc4wCR0gqL4Q5-RHoxTJpCAfiBbjS6uX1IYDx3Ux5NUvSLol5cHyJ0ZnXmA2BK_FovXE8Jpo3TkdNtK8IzX1_1FG_chXVyoqUV7N6Fiu88HIN7T4sbjUBfPWEXE88m-Uarz888pZKO8gAMwPm3wnqppK7UcJ25wT1pG3EiEeOjq508WVeNmnFdW0",
-  },
-];
-
-const MONTHS = ["هذا الشهر", "الشهر الماضي", "يونيو ٢٠٢٦", "مايو ٢٠٢٦"];
+import { HISTORY_ORDERS, HISTORY_MONTHS } from "@/lib/data";
 
 export default function HistoryPage() {
   const [selectedMonth, setSelectedMonth] = useState("هذا الشهر");
@@ -63,7 +19,7 @@ export default function HistoryPage() {
         </div>
 
         <div className="flex gap-2 mt-3 overflow-x-auto no-scrollbar">
-          {MONTHS.map((month) => (
+          {HISTORY_MONTHS.map((month) => (
             <button
               key={month}
               onClick={() => setSelectedMonth(month)}

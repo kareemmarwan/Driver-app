@@ -5,23 +5,9 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import StoreDetailsSkeleton from "@/components/skeletons/StoreDetailsSkeleton";
 import { useWishlistStore } from '@/lib/store/wishlistStore';
+import { STORE_CATEGORIES, BEST_SELLERS, ALL_PRODUCTS } from "@/lib/data";
 
-const CATEGORIES = ["الكل", "خبز طازج", "معجنات", "كيك وحلويات", "وجبات الإفطار"];
 
-// قائمة المنتجات الأكثر مبيعاً
-const BEST_SELLERS = [
-  { id: 1, name: "رغيف خبز العجينة الحامضة (Sourdough)", price: "15.50 ₪", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDfe7mEciDkjs1aMLK75UiCgJIVMT8iNYchGu2ZcP5fpLgg2PmoOu6ZiPCpS7S7Kr-t81JJbNEwlCrkAfmVmUzrZiEcwUs_wNUVfLSJz1t2JCHIOqRZcr8wRDyQ890yBCLvXURCe4ChrSKY-1KwHDcz_CE0zDEEPYz2vGFrtVIz9mK4K43Pn95AYamQ0HajNcT56ZGevE_DUWLj3-kXdMBTET8Jvv3SRPaqMEXijIICukRN1EgaNHY_Yf8pxFcJN0tHOcJyZk6v9os" },
-  { id: 2, name: "كرواسون اللوز المقرمش", price: "11.00 ₪", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBbO-5qv342WdqFhw7PJ2Fylg5bcTU06A7mlTaibuqEAQ0iaBxkW-0XuuuMZgkTv5_8vDDCsgHkB6fYE3XvhoGp-wEB5OnGBZYX7-YNWkWHwpt4S0sq6sp9FseyM-XGTZ6Y0JXu6yaTkUScWKkPXNUhi0phngNd235Zu5SPu9o4moV8TFEXUYx3oc9bV96qsqTVuSDPGl8n58NUA4bhHkxP_LaTJeNO9Wrs_VzfIWAUkKzSZTT4KdVjCuQkoiyuzu-iwiYeQVPvxFc" },
-  { id: 3, name: "مافن التوت الأزرق (Blueberry)", price: "9.50 ₪", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBFfbil7A3IhAIfda5Al2RzVNp9EzK-Wkf9MnTwp_dYrC-syCVvKGEXWzbtGD2A6B7Lup1QASEru5eNQFfsp0B_6p-jQ87V1XPro08lGPP7OCNKvnNM1pQfeOAAaEA52PXPWyQOGHaJR5nTifcNDK4J1RBjwmCG-MSeAZN1WCJp4wva-45_GKb1xNuqAay12aDuyDMT46KLOKTx5yIMINXGhQg9I9CPHag6kl-CqLOALoHOxVl5ZkhCCU1Zxgd0PaxCbGw5dBIU6F4" },
-];
-
-// قائمة كافة المنتجات المعروضة في الشبكة
-const ALL_PRODUCTS = [
-  { id: 4, name: "كوكيز بقطع الشوكولاتة الداكنة", price: "18.00 ₪", rating: 4.8, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpkAI0iAfnxSqiIyFYE-yEUBrVdjt7Jikde2zejZHWn4Xgu96peFxx71KFETRLNGNIHfbtxKc4s9PlEmCnPZ7jm3OaGUDBAA06BNROnDagrB0-zRAx_kopWQhrqJjq7bJ6eXyxli69KfUuIDd361DEAvHb0Pdu-VgXRuI3C9-bUXMzS8hp-qzCMgZWgcZhacg2QuOjDmlbgC7oPbp0CmGcTq8btnSxOxW2UDy8pH2CbzHHPQv87v_pMVSsaUv_JXmOT5wZS-6CWb8" },
-  { id: 5, name: "باجيت فرنسي طازج", price: "8.50 ₪", rating: 4.7, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCBmqRwbR-yvv5gAv52wc9pq2_SEdjIGPIUVioM_piKkZiDBaFM2o3-GPHwJgkurQD07KaT0ith7ZT-M9sQw_R-94premis0iONcqmT-NmVCgfaRwOI03AHFGfcT9_hGtKQHFUVsLK-y3vpMUrhayveu5IdPYBhN8ZCiC2cd05vo-9b748gBFv5Cv9CiiC8Dzp4Y5nHzaNkGgdxJXui_4w8BoF8AlEOfHONpV7XbxFVJVGWcoX5N8MEY2v216sTnl1cV3TC5jjXzBo" },
-  { id: 6, name: "تارت الليمون المنعش", price: "13.50 ₪", rating: 4.9, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPBDCWtbMvAE-OORAI_z9n71CazFxkHJgn8TTir5FSUAhyZYWb9D_StNGiL0bK7RbdsMEmGZASFP4GKc_EuhHo-qIRXGMHp-q5YrsP92i1nyWtt5MXXgwiwOZX9-geT8vVObPCrVhLJYsJVN3HrmiiAAYOJDAsb6zhHOd0uUcdaTjjhp9p8OLDxcwEz-tSsY1u_9om77TaRT7B936NQMcdaovGImCoXXAWs0bEEy1HAPPiYTpghM-gtPDQ6p84j7CF8ZiEKRH43II" },
-  { id: 7, name: "لاتيه مثلج بحليب الشوفان", price: "14.00 ₪", rating: 4.6, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAkkuJ_GCCmwZaWkPj-CjE7b8vde9IwgHB2CX6M2PptwFoCfzIHyiEkump_iWVRMkoMrCca1tLyOY3tplrNNvOYOI4PdYj3r-CyQqql6Vnlg_49WqjFJCAA_-iIeJQOj2bSV-DA3-0huX77ajNFw-79wx03u-RNMoS9p1nkVkm4HoKjx16CGKtxKvZYN4yi-DtDwDBzWwheuWgMS6bMceEr8bCaEmZ7DflkOwII9HmRmvhMJnySogzdUCZJLxdQRXIL0Qouc4I7zpg" },
-];
 
 export default function StoreDetails() {
   const params = useParams<{ storeId: string }>();
@@ -168,7 +154,7 @@ export default function StoreDetails() {
         {/* أشرطة الفئات وقوائم التنقل الأفقية (متناسقة مع شريط التصنيفات النشط) */}
         <section className="w-full mt-6 overflow-x-auto no-scrollbar scroll-smooth">
           <div className="flex gap-2 px-4 py-1 sm:px-6">
-            {CATEGORIES.map((cat) => {
+            {STORE_CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat;
               return (
                 <button
@@ -199,7 +185,7 @@ export default function StoreDetails() {
                 <div className="relative w-full h-32">
                   <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${item.image}')` }} />
                   <button
-                    onClick={() => toggleItem({ id: item.id, name: item.name, image: item.image, price: item.price, storeName: 'مخبز الموقد الذهبي' })}
+                    onClick={() => toggleItem({ id: item.id, name: item.name, image: item.image, price: item.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' })}
                     className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
                   >
                     <span
@@ -213,7 +199,7 @@ export default function StoreDetails() {
                 <div className="p-3.5">
                   <h5 className="text-xs font-bold truncate text-slate-800 group-hover:text-[#006d34] transition-colors">{item.name}</h5>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="text-sm font-bold text-[#006d34]">{item.price}</span>
+                    <span className="text-sm font-bold text-[#006d34]">{item.priceDisplay}</span>
                     <button className="flex items-center justify-center w-8 h-8 transition-all rounded-full shadow-sm bg-[#00d26a]/15 text-[#006d34] hover:bg-[#006d34] hover:text-white active:scale-90">
                       <span className="material-symbols-outlined text-[18px]">add</span>
                     </button>
@@ -234,7 +220,7 @@ export default function StoreDetails() {
                   <div className="relative w-full h-36">
                     <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${product.image}')` }} />
                     <button
-                      onClick={() => toggleItem({ id: product.id, name: product.name, image: product.image, price: product.price, storeName: 'مخبز الموقد الذهبي' })}
+                      onClick={() => toggleItem({ id: product.id, name: product.name, image: product.image, price: product.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' })}
                       className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
                     >
                       <span
@@ -255,7 +241,7 @@ export default function StoreDetails() {
                 </div>
                 <div className="p-3.5 pt-2">
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-sm font-bold text-[#006d34]">{product.price}</span>
+                    <span className="text-sm font-bold text-[#006d34]">{product.priceDisplay}</span>
                     <button className="flex items-center justify-center transition-all rounded-full shadow-sm w-9 h-9 bg-[#00d26a]/15 text-[#006d34] hover:bg-[#006d34] hover:text-white active:scale-90">
                       <span className="material-symbols-outlined text-[20px]">add</span>
                     </button>

@@ -2,13 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/lib/store/cartStore';
+import { useOrderStore } from '@/lib/store/orderStore';
 import EmptyState from '@/components/EmptyState';
 
 export default function Cart() {
+  const router = useRouter();
   const cartItems = useCartStore((s) => s.items);
   const updateQuantity = useCartStore((s) => s.updateQuantity);
   const subtotal = useCartStore((s) => s.subtotal());
+  const setCurrentOrder = useOrderStore((s) => s.setCurrentOrder);
   const [paymentMethod, setPaymentMethod] = useState('cod');
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(true);
@@ -16,6 +20,21 @@ export default function Cart() {
   const deliveryFee = 7.00;
   const discount = isPromoApplied ? 15.00 : 0.00;
   const total = subtotal + deliveryFee - discount;
+
+  const handleProceedToOrder = () => {
+    setCurrentOrder({
+      items: cartItems,
+      subtotal,
+      deliveryFee,
+      discount,
+      total,
+      paymentMethod,
+      notes: '',
+      storeName: cartItems[0]?.meta || '',
+      deliveryAddress: 'غزة، شارع الرمال، عمارة رقم ٤٥، الطابق الثالث',
+    });
+    router.push('/OrderSummary');
+  };
 
   useEffect(() => { document.title = 'سلة المشتريات | دري فري'; }, []);
 
@@ -226,13 +245,13 @@ export default function Cart() {
         </div>
 
         {/* زر الانتقال الملون بالتدرج اللوني المتوافق مع شريط التحكم الرئيسي */}
-        <Link
-          href="/OrderSummary"
+        <button
+          onClick={handleProceedToOrder}
           className="w-full h-14 bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0px_8px_20px_rgba(0,210,106,0.2)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
         >
           <span>الانتقال لتأكيد الطلب</span>
           <span className="text-xl transform rotate-180 material-symbols-outlined">chevron_right</span>
-        </Link>
+        </button>
       </footer>
 
     </div>

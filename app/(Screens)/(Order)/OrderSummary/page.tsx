@@ -1,27 +1,53 @@
-
 'use client';
-import Link from 'next/link';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // 1. استيراد الموجه من next/navigation
-export default function OrderSummary() {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-const router = useRouter();
-  // منطق محاكاة الضغط على زر تأكيد الطلب مع تغيير حالة الزر (Loading -> Success)
-  const handleConfirmOrder = () => {
-    if (isProcessing || isSuccess) return;
+import { useRouter } from 'next/navigation';
+import { useOrderStore, generateOrderId } from '@/lib/store/orderStore';
 
+export default function OrderSummary() {
+  const router = useRouter();
+  const currentOrder = useOrderStore((s) => s.currentOrder);
+  const addActiveOrder = useOrderStore((s) => s.addActiveOrder);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  if (!currentOrder) {
+    return (
+      <div className="max-w-md mx-auto min-h-screen bg-[#F8FAFC] flex items-center justify-center" dir="rtl">
+        <p className="text-[#7f8e7e]">لا توجد بيانات طلب. الرجاء العودة للسلة.</p>
+      </div>
+    );
+  }
+
+  const handleConfirmOrder = () => {
+    if (isProcessing) return;
     setIsProcessing(true);
+
+    const orderId = generateOrderId();
+    const itemsSummary = currentOrder.items
+      .map((i) => `${i.quantity}× ${i.name}`)
+      .join('، ');
+
+    const firstItem = currentOrder.items[0];
+
+    addActiveOrder({
+      id: orderId,
+      status: 'قيد التجهيز',
+      statusIcon: 'receipt_long',
+      store: currentOrder.storeName || 'متجر',
+      items: itemsSummary,
+      eta: '٢٥-٣٥ دقيقة',
+      progress: 10,
+      driver: null,
+      image: firstItem?.image || '',
+      price: `₪${currentOrder.total.toFixed(2)}`,
+    });
+
     setTimeout(() => {
       setIsProcessing(false);
-      setIsSuccess(true);
       router.push('/PaymentMethods');
-
     }, 300);
   };
 
   return (
-    // تم زيادة pb-40 إلى pb-52 لضمان عدم اختفاء محتوى أسفل الشاشة خلف الـ TabBar الثابت
     <div className="max-w-md mx-auto min-h-screen bg-[#F8FAFC] text-[#2d3732] flex flex-col relative pb-52 font-cairo" dir="rtl">
 
       {/* شريط التطبيق العلوي */}
@@ -67,7 +93,7 @@ const router = useRouter();
               </div>
               <div className="flex-1 text-right">
                 <p className="text-[10px] font-bold text-[#7f8e7e] uppercase tracking-wider">نقطة الاستلام (من)</p>
-                <h3 className="text-sm font-bold text-[#2d3732] mt-0.5">شارع النصر، غزة</h3>
+                <h3 className="text-sm font-bold text-[#2d3732] mt-0.5">{currentOrder.storeName || 'المتجر'}</h3>
               </div>
             </div>
 
@@ -82,25 +108,31 @@ const router = useRouter();
               </div>
               <div className="flex-1 text-right">
                 <p className="text-[10px] font-bold text-[#7f8e7e] uppercase tracking-wider">وجهة التسليم (إلى)</p>
-                <h3 className="text-sm font-bold text-[#2d3732] mt-0.5">شارع الرشيد، مقابل الفندق، غزة</h3>
+                <h3 className="text-sm font-bold text-[#2d3732] mt-0.5">{currentOrder.deliveryAddress}</h3>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ثانياً: بطاقة تفاصيل الطرد أو الشحنة */}
+        {/* ثانياً: بطاقة تفاصيل الطلب */}
         <section className="bg-white rounded-2xl p-4 shadow-[0px_4px_20px_rgba(0,109,52,0.02)] border border-[#bbcbba]/20">
-          <h3 className="mb-3 text-sm font-bold text-[#006d34]">محتويات الشحنة</h3>
-          <div className="flex items-start gap-4">
-            <div className="w-20 h-20 overflow-hidden border shadow-sm rounded-xl bg-slate-50 shrink-0 border-[#bbcbba]/20">
-              <img className="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo3JVpR4Yfw3aBE8vZgfv3xi7stzNGr6TZFqe8aqM3QYxAylRnAexPIsZJ28_2uII9L2MmElwyqi2hu7vHMZX7Uc0nvhdn2SAQ1vNYDkPXIWyhvYj0OctTj_6VwoPtjgxJUuXimKhlyZywsYG_OXXrDCM5UogRNrpgtnfJpazDR2q86ifeOQLsV9L-rOGr-ohCVpotfJk0dvs82kIMhPhUbGv0AmRH_-HXXNpZ0xcL0wDjAPr0skpzWC3r-4u-RRTTXyWp3KHsiOU" alt="صورة الشحنة كهدية غلاف" />
-            </div>
-            <div className="flex-1 text-right">
-              <p className="text-[11px] font-bold text-[#7f8e7e]">الوصف المرفق</p>
-              <p className="text-xs text-[#2d3732]/80 italic mt-1.5 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-[#bbcbba]/10">
-                "طرد يحتوي على هدية خاصة مجهة لصديق مقرب"
-              </p>
-            </div>
+          <h3 className="mb-3 text-sm font-bold text-[#006d34]">محتويات الطلب</h3>
+          <div className="space-y-3">
+            {currentOrder.items.map((item) => (
+              <div key={item.id} className="flex items-start gap-3">
+                <div className="w-14 h-14 overflow-hidden border shadow-sm rounded-xl bg-slate-50 shrink-0 border-[#bbcbba]/20">
+                  <img className="object-cover w-full h-full" src={item.image} alt={item.name} />
+                </div>
+                <div className="flex-1 text-right">
+                  <p className="text-xs font-bold text-[#2d3732]">{item.name}</p>
+                  {item.meta && <p className="text-[10px] text-[#7f8e7e]">{item.meta}</p>}
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="text-[11px] font-bold text-[#006d34]">₪{item.price.toFixed(2)}</span>
+                    <span className="text-[10px] text-[#7f8e7e]">الكمية: {item.quantity}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -109,16 +141,22 @@ const router = useRouter();
           <h3 className="mb-3 text-sm font-bold text-[#006d34]">ملخص الرسوم المالي</h3>
           <div className="space-y-3 text-xs">
             <div className="flex items-center justify-between">
-              <span className="text-[#7f8e7e]">تكلفة توصيل المندوب</span>
-              <span className="font-mono font-bold text-[#2d3732]">₪١٨.٠٠</span>
+              <span className="text-[#7f8e7e]">المجموع الفرعي للوجبات</span>
+              <span className="font-mono font-bold text-[#2d3732]">₪{currentOrder.subtotal.toFixed(2)}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-[#7f8e7e]">رسوم الخدمة والتشغيل</span>
-              <span className="font-mono font-bold text-[#2d3732]">₪٢.٠٠</span>
+              <span className="text-[#7f8e7e]">رسوم التوصيل</span>
+              <span className="font-mono font-bold text-[#2d3732]">₪{currentOrder.deliveryFee.toFixed(2)}</span>
             </div>
+            {currentOrder.discount > 0 && (
+              <div className="flex items-center justify-between text-[#006d34]">
+                <span>الخصم المطبق</span>
+                <span className="font-mono">- ₪{currentOrder.discount.toFixed(2)}</span>
+              </div>
+            )}
             <div className="flex items-center justify-between pt-2 mt-2 font-bold border-t border-dashed border-[#bbcbba]/30 text-[#006d34]">
-              <span>الخصومات والعروض المطبقة</span>
-              <span className="font-mono">- ₪٠.٠٠</span>
+              <span>إجمالي الفاتورة النهائي</span>
+              <span className="font-mono text-base">₪{currentOrder.total.toFixed(2)}</span>
             </div>
           </div>
         </section>
@@ -131,53 +169,35 @@ const router = useRouter();
       </main>
 
       {/* شريط الإرسال وتأكيد الفاتورة السفلي الثابت */}
-      {/* تم تغيير الـ bottom ليرتفع بمقدار يناسب الـ TabBar (بداية من bottom-28)، وجعل الـ z-40 ليكون تحت الـ TabBar (z-50) */}
       <footer className="fixed bottom-28 left-4 right-4 max-w-[26rem] mx-auto bg-white/95 backdrop-blur-md p-4 shadow-[0px_-8px_30px_rgba(0,109,52,0.05)] border border-[#bbcbba]/30 z-40 rounded-2xl">
         <div className="flex items-end justify-between px-1 mb-4">
           <div className="text-right">
             <p className="text-[11px] font-bold text-[#7f8e7e]">إجمالي المبلغ النهائي</p>
-            <p className="mt-1 font-mono text-xl font-extrabold leading-none text-[#006d34]">₪٢٠.٠٠</p>
+            <p className="mt-1 font-mono text-xl font-extrabold leading-none text-[#006d34]">₪{currentOrder.total.toFixed(2)}</p>
           </div>
           <div className="flex items-center gap-1.5 text-[#2d3732] text-xs font-bold bg-slate-50 px-2.5 py-1.5 rounded-full border border-[#bbcbba]/10">
             <span className="text-base text-[#006d34] material-symbols-outlined">account_balance_wallet</span>
-            <span>الدفع من المحفظة الرقمية</span>
+            <span>الدفع {currentOrder.paymentMethod === 'cod' ? 'عند الاستلام' : 'ببطاقة ائتمان'}</span>
           </div>
         </div>
 
-        {/* زر التفاعل الذكي المتغير حسب الحالة بالألوان الجديدة */}
-        {isProcessing || isSuccess ? (
-          <button
-            disabled
-            className={`w-full h-14 rounded-xl text-base font-bold flex items-center justify-center gap-2 shadow-lg transition-all duration-300 ${
-              isSuccess
-                ? "bg-[#006d34] text-white shadow-[#006d34]/20"
-                : "bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white shadow-[0px_8px_20px_rgba(0,210,106,0.2)]"
-            }`}
-          >
-            {isProcessing ? (
-              <>
-                <svg className="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                <span>جاري إرسال طلبك الآن...</span>
-              </>
-            ) : (
-              <>
-                <span className="text-xl font-bold material-symbols-outlined">check_circle</span>
-                <span>تم تأكيد وإرسال الطلب بنجاح!</span>
-              </>
-            )}
+        {/* زر التفاعل الذكي المتغير حسب الحالة */}
+        {isProcessing ? (
+          <button disabled className="w-full h-14 rounded-xl text-base font-bold flex items-center justify-center gap-2 shadow-lg bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white shadow-[0px_8px_20px_rgba(0,210,106,0.2)]">
+            <svg className="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+            </svg>
+            <span>جاري إرسال طلبك الآن...</span>
           </button>
         ) : (
-          <Link
-            href="/PaymentMethods"
+          <button
             onClick={handleConfirmOrder}
             className="w-full h-14 rounded-xl text-base font-bold flex items-center justify-center gap-2 shadow-lg transition-all duration-300 bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white shadow-[0px_8px_20px_rgba(0,210,106,0.2)] active:scale-[0.98]"
           >
             <span>تأكيد وإرسال الطلب</span>
             <span className="text-xl transform rotate-180 material-symbols-outlined">chevron_right</span>
-          </Link>
+          </button>
         )}
       </footer>
 

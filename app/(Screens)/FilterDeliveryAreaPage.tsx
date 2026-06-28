@@ -1,34 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-
-// قائمة خيارات الترتيب مترجمة للعربية
-const SORT_OPTIONS = [
-  { id: 'nearest', label: 'الأقرب أولاً', icon: 'near_me' },
-  { id: 'rated', label: 'الأعلى تقييماً', icon: 'star' },
-  { id: 'fastest', label: 'الأسرع توصيلاً', icon: 'bolt' },
-];
-
-// قائمة المناطق الفلسطينية مترجمة ومجهزة للـ Chips
-const AREAS = [
-  { id: 'gaza', name: 'مدينة غزة' },
-  { id: 'rimal', name: 'الرمال' },
-  { id: 'naser', name: 'النصر' },
-  { id: 'jabalia', name: 'جباليا' },
-  { id: 'lahia', name: 'بيت لاهيا' },
-  { id: 'hanoun', name: 'بيت حانون' },
-  { id: 'maghazi', name: 'المغازي' },
-  { id: 'bureij', name: 'البريج' },
-  { id: 'nuseirat', name: 'النصيرات' },
-  { id: 'deir_balah', name: 'دير البلح' },
-  { id: 'khan_younis', name: 'خانيونس' },
-  { id: 'rafah', name: 'رفح' },
-];
+import { useRouter } from 'next/navigation';
+import { SORT_OPTIONS, AREAS } from "@/lib/data";
+import { useFilterStore } from '@/lib/store/filterStore';
 
 export default function FilterDeliveryAreaPage() {
+  const router = useRouter();
+  const { selectedArea: storeArea, selectedSort: storeSort, setSelectedArea, setSelectedSort, resetFilters } = useFilterStore();
   const [isOpen, setIsOpen] = useState(true);
-  const [selectedSort, setSelectedSort] = useState('nearest');
-  const [selectedArea, setSelectedArea] = useState<string | null>(null);
+  const [selectedSort, setSelectedSortLocal] = useState(storeSort);
+  const [selectedArea, setSelectedAreaLocal] = useState<string | null>(storeArea);
 
   // إغلاق الشاشة المنبثقة
   const handleClose = () => {
@@ -37,8 +19,8 @@ export default function FilterDeliveryAreaPage() {
 
   // إعادة ضبط التصفية
   const handleReset = () => {
-    setSelectedSort('nearest');
-    setSelectedArea(null);
+    setSelectedSortLocal('nearest');
+    setSelectedAreaLocal(null);
   };
 
   // تطبيق التصفية
@@ -47,9 +29,12 @@ export default function FilterDeliveryAreaPage() {
       alert('الرجاء اختيار منطقة أولاً');
       return;
     }
+    setSelectedArea(selectedArea);
+    setSelectedSort(selectedSort);
     const areaName = AREAS.find(a => a.id === selectedArea)?.name;
     console.log('تطبيق الفلترة للمنطقة:', areaName, 'والترتيب:', selectedSort);
     setIsOpen(false);
+    router.push('/Restaurants');
   };
 
   return (
@@ -116,7 +101,7 @@ export default function FilterDeliveryAreaPage() {
                           type="radio"
                           name="sort"
                           checked={isChecked}
-                          onChange={() => setSelectedSort(option.id)}
+                          onChange={() => setSelectedSortLocal(option.id)}
                           className="hidden"
                         />
                         <div className={`px-4 py-3 rounded-2xl border-2 transition-all duration-200 flex items-center gap-2 text-sm font-medium ${
@@ -145,7 +130,7 @@ export default function FilterDeliveryAreaPage() {
                     return (
                       <div
                         key={area.id}
-                        onClick={() => setSelectedArea(area.id)}
+                        onClick={() => setSelectedAreaLocal(area.id)}
                         className={`group cursor-pointer p-4 rounded-2xl border transition-all duration-200 flex flex-col gap-3 ${
                           isSelected
                             ? "bg-primary/10 border-primary ring-1 ring-primary"

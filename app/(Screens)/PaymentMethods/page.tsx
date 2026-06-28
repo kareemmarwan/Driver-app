@@ -1,11 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useOrderStore } from '@/lib/store/orderStore';
+import { useCartStore } from '@/lib/store/cartStore';
 export default function PaymentMethods() {
-  const [selectedMethod, setSelectedMethod] = useState('bop'); // bop | jawwal | paypal | cash
+  const router = useRouter();
+  const currentOrder = useOrderStore((s) => s.currentOrder);
+  const setCurrentOrder = useOrderStore((s) => s.setCurrentOrder);
+  const clearCart = useCartStore((s) => s.clearCart);
+  const [selectedMethod, setSelectedMethod] = useState('bop');
   const [copiedText, setCopiedText] = useState(false);
   const [notes, setNotes] = useState('');
+
+  const handleConfirmPayment = () => {
+    if (currentOrder) {
+      setCurrentOrder({ ...currentOrder, paymentMethod: selectedMethod, notes });
+    }
+    clearCart();
+    router.push('/OrderConfirmed');
+  };
 
   // دالة نسخ أرقام الحسابات إلى الحافظة
   const copyToClipboard = (text: string, e: React.MouseEvent) => {
@@ -43,15 +57,21 @@ export default function PaymentMethods() {
           <div className="space-y-3 text-xs">
             <div className="flex items-center justify-between">
               <span className="text-[#7f8e7e]">إجمالي المنتجات والوجبات</span>
-              <span className="font-bold text-[#2d3732] font-mono">₪٢٠.٠٠</span>
+              <span className="font-bold text-[#2d3732] font-mono">₪{currentOrder?.subtotal.toFixed(2) || '٠.٠٠'}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-[#7f8e7e]">رسوم خدمة التوصيل</span>
-              <span className="font-bold text-[#2d3732] font-mono">₪٥.٠٠</span>
+              <span className="font-bold text-[#2d3732] font-mono">₪{currentOrder?.deliveryFee.toFixed(2) || '٠.٠٠'}</span>
             </div>
+            {currentOrder && currentOrder.discount > 0 && (
+              <div className="flex items-center justify-between text-[#006d34]">
+                <span>الخصم المطبق</span>
+                <span className="font-mono">- ₪{currentOrder.discount.toFixed(2)}</span>
+              </div>
+            )}
             <div className="pt-3 border-t border-dashed border-[#bbcbba]/30 flex justify-between items-center">
               <span className="font-bold text-[#2d3732] text-sm">المجموع النهائي المطلوب</span>
-              <span className="text-[#006d34] font-extrabold text-lg font-mono">₪٢٥.٠٠</span>
+              <span className="text-[#006d34] font-extrabold text-lg font-mono">₪{currentOrder?.total.toFixed(2) || '٠.٠٠'}</span>
             </div>
           </div>
         </section>
@@ -258,11 +278,11 @@ export default function PaymentMethods() {
 
       {/* شريط تأكيد العمليات النهائي - تم تعديل تموضعه ليكون طائراً في bottom-28 لحمايته من الـ TabBar */}
       <footer className="fixed bottom-28 left-4 right-4 max-w-[26rem] mx-auto bg-white/95 backdrop-blur-md p-4 shadow-[0px_-8px_30px_rgba(0,109,52,0.05)] border border-[#bbcbba]/30 z-40 rounded-2xl">
-        <Link
-                  href="/OrderConfirmed" className="w-full h-14 bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white rounded-xl font-bold text-sm shadow-[0px_8px_20px_rgba(0,210,106,0.2)] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+        <button
+          onClick={handleConfirmPayment} className="w-full h-14 bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white rounded-xl font-bold text-sm shadow-[0px_8px_20px_rgba(0,210,106,0.2)] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
           <span>تأكيد عمليات الدفع والطلب</span>
           <span className="text-lg material-symbols-outlined">check_circle</span>
-        </Link>
+        </button>
       </footer>
 
     </div>
