@@ -72,7 +72,7 @@ export default function Restaurants() {
       {/* شريط التطبيق العلوي متناسق مع شفافية البار */}
       <header className="sticky top-0 z-50 flex items-center justify-between w-full px-4 transition-all border-b border-[#bbcbba]/20 shadow-[0_2px_12px_rgba(0,109,52,0.02)] sm:px-6 lg:px-8 bg-white/90 backdrop-blur-md h-14 sm:h-16">
         <div className="flex items-center gap-3 sm:gap-4">
-          <button className="transition-transform duration-200 active:scale-95 text-[#006d34]">
+          <button onClick={() => window.history.back()} className="transition-transform duration-200 active:scale-95 text-[#006d34]">
             <span className="text-xl transform rotate-180 sm:text-2xl material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-lg font-bold sm:text-xl lg:text-2xl text-[#006d34]">المطاعم</h1>

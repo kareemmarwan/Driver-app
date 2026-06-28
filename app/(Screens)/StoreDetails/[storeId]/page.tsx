@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import StoreDetailsSkeleton from "@/components/skeletons/StoreDetailsSkeleton";
+import { useCartStore } from '@/lib/store/cartStore';
 import { useWishlistStore } from '@/lib/store/wishlistStore';
 import { STORE_CATEGORIES, BEST_SELLERS, ALL_PRODUCTS } from "@/lib/data";
 
@@ -11,6 +12,7 @@ import { STORE_CATEGORIES, BEST_SELLERS, ALL_PRODUCTS } from "@/lib/data";
 
 export default function StoreDetails() {
   const params = useParams<{ storeId: string }>();
+  const router = useRouter();
   const [isHeaderActive, setIsHeaderActive] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,8 +23,19 @@ export default function StoreDetails() {
   }, []);
   const [activeCategory, setActiveCategory] = useState("الكل");
   const { isFavorite: isWishlisted, toggleItem } = useWishlistStore();
-  const [cartCount, setCartCount] = useState(2);
-  const [totalPrice, setTotalPrice] = useState("42.50 ₪");
+  const addItem = useCartStore((s) => s.addItem);
+  const storeId = params.storeId;
+
+  const handleAddToCart = (product: { id: number; name: string; price: number; image: string }) => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: product.image,
+      meta: 'مخبز الموقد الذهبي',
+    });
+  };
 
   // مراقبة التمرير لتغيير خلفية الهيدر العلوي ديناميكياً لتأثير زجاجي متناسق
   useEffect(() => {
@@ -181,11 +194,15 @@ export default function StoreDetails() {
           </div>
           <div className="flex gap-4 px-4 pb-3 overflow-x-auto no-scrollbar sm:px-6">
             {BEST_SELLERS.map((item) => (
-              <div key={item.id} className="min-w-[190px] bg-white rounded-[24px] shadow-[0px_6px_24px_rgba(0,109,52,0.02)] overflow-hidden flex-shrink-0 border border-[#bbcbba]/20 group transition-all duration-300 hover:shadow-[0px_10px_32px_rgba(0,109,52,0.05)]">
+              <div
+                key={item.id}
+                onClick={() => router.push(`/ProductDetailsPage/${item.id}?storeId=${storeId}`)}
+                className="min-w-[190px] bg-white rounded-[24px] shadow-[0px_6px_24px_rgba(0,109,52,0.02)] overflow-hidden flex-shrink-0 border border-[#bbcbba]/20 group transition-all duration-300 hover:shadow-[0px_10px_32px_rgba(0,109,52,0.05)] cursor-pointer"
+              >
                 <div className="relative w-full h-32">
                   <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${item.image}')` }} />
                   <button
-                    onClick={() => toggleItem({ id: item.id, name: item.name, image: item.image, price: item.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' })}
+                    onClick={(e) => { e.stopPropagation(); toggleItem({ id: item.id, name: item.name, image: item.image, price: item.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' }); }}
                     className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
                   >
                     <span
@@ -200,7 +217,10 @@ export default function StoreDetails() {
                   <h5 className="text-xs font-bold truncate text-slate-800 group-hover:text-[#006d34] transition-colors">{item.name}</h5>
                   <div className="flex items-center justify-between mt-3">
                     <span className="text-sm font-bold text-[#006d34]">{item.priceDisplay}</span>
-                    <button className="flex items-center justify-center w-8 h-8 transition-all rounded-full shadow-sm bg-[#00d26a]/15 text-[#006d34] hover:bg-[#006d34] hover:text-white active:scale-90">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleAddToCart(item); }}
+                      className="flex items-center justify-center w-8 h-8 transition-all rounded-full shadow-sm bg-[#00d26a]/15 text-[#006d34] hover:bg-[#006d34] hover:text-white active:scale-90"
+                    >
                       <span className="material-symbols-outlined text-[18px]">add</span>
                     </button>
                   </div>
@@ -215,12 +235,16 @@ export default function StoreDetails() {
           <h2 className="mb-4 text-sm font-bold sm:text-base text-slate-800">جميع المنتجات</h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {ALL_PRODUCTS.map((product) => (
-              <div key={product.id} className="bg-white rounded-[24px] shadow-[0px_6px_24px_rgba(0,109,52,0.02)] overflow-hidden border border-[#bbcbba]/20 group transition-all duration-300 hover:shadow-[0px_10px_32px_rgba(0,109,52,0.05)] flex flex-col justify-between">
+              <div
+                key={product.id}
+                onClick={() => router.push(`/ProductDetailsPage/${product.id}?storeId=${storeId}`)}
+                className="bg-white rounded-[24px] shadow-[0px_6px_24px_rgba(0,109,52,0.02)] overflow-hidden border border-[#bbcbba]/20 group transition-all duration-300 hover:shadow-[0px_10px_32px_rgba(0,109,52,0.05)] flex flex-col justify-between cursor-pointer"
+              >
                 <div>
                   <div className="relative w-full h-36">
                     <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${product.image}')` }} />
                     <button
-                      onClick={() => toggleItem({ id: product.id, name: product.name, image: product.image, price: product.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' })}
+                      onClick={(e) => { e.stopPropagation(); toggleItem({ id: product.id, name: product.name, image: product.image, price: product.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' }); }}
                       className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
                     >
                       <span
@@ -242,7 +266,10 @@ export default function StoreDetails() {
                 <div className="p-3.5 pt-2">
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-sm font-bold text-[#006d34]">{product.priceDisplay}</span>
-                    <button className="flex items-center justify-center transition-all rounded-full shadow-sm w-9 h-9 bg-[#00d26a]/15 text-[#006d34] hover:bg-[#006d34] hover:text-white active:scale-90">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}
+                      className="flex items-center justify-center transition-all rounded-full shadow-sm w-9 h-9 bg-[#00d26a]/15 text-[#006d34] hover:bg-[#006d34] hover:text-white active:scale-90"
+                    >
                       <span className="material-symbols-outlined text-[20px]">add</span>
                     </button>
                   </div>
