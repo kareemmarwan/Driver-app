@@ -93,7 +93,7 @@ export default function ProductDetailsPage() {
   return (
     <div className="min-h-screen bg-background text-text-primary antialiased pb-32" dir="rtl">
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white border-b border-border/50">
-        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-primary hover:bg-gray-50 active:scale-95 border border-border/50">
+        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-primary hover:bg-surface active:scale-95 border border-border/50">
           <span className="text-2xl material-symbols-outlined">arrow_back</span>
         </Link>
         <h1 className="text-sm font-bold text-text-primary">تفاصيل المنتج</h1>
@@ -109,7 +109,7 @@ export default function ProductDetailsPage() {
           <h2 className="text-xl font-bold text-text-primary">{product.name}</h2>
           <p className="text-sm text-text-secondary mt-1 leading-relaxed">{product.description}</p>
           <div className="flex items-center gap-1.5 mt-2">
-            <span className="material-symbols-outlined text-[#FFD700] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+            <span className="material-symbols-outlined text-[#F59E0B] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
             <span className="text-sm font-bold text-text-primary">{product.rating}</span>
           </div>
         </div>

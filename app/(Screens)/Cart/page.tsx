@@ -42,7 +42,7 @@ export default function Cart() {
     return (
       <div className="min-h-screen bg-background pb-32" dir="rtl">
         <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border/50">
-          <button onClick={() => router.back()} className="p-2 transition-colors transition-transform rounded-full hover:bg-primary/5 active:scale-95 text-text-primary">
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
             <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-base font-bold text-primary">سلة المشتريات</h1>
@@ -66,7 +66,7 @@ export default function Cart() {
 
       <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border/50">
         <div className="flex items-center gap-4">
-          <button onClick={() => router.back()} className="p-2 transition-colors transition-transform rounded-full hover:bg-primary/5 active:scale-95 text-text-primary">
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
             <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-base font-bold text-primary">سلة المشتريات</h1>

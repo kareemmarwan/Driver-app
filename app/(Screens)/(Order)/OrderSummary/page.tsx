@@ -51,7 +51,7 @@ export default function OrderSummary() {
     <div className="max-w-md mx-auto min-h-screen bg-background text-text-primary flex flex-col relative" dir="rtl">
 
       <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white shadow-sm flex justify-between items-center px-4 h-16 border-b border-border/50">
-        <button className="flex items-center justify-center w-10 h-10 transition-colors rounded-full hover:bg-primary/5 active:scale-95 text-primary">
+        <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
         <h1 className="text-base font-bold text-primary">توصيل جديد</h1>

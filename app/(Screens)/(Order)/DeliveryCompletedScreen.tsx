@@ -17,9 +17,9 @@ export default function DeliveryCompletedScreen() {
   const [isOnline, setIsOnline] = useState(true);
 
   return (
-    <div className={`${cairoFont.className} bg-white text-slate-900 min-h-screen flex flex-col relative pb-32`} dir="rtl">
+    <div className={`${cairoFont.className} bg-background text-text-primary min-h-screen flex flex-col relative pb-32`} dir="rtl">
 
-      <header className="w-full top-0 sticky z-50 bg-white shadow-sm flex justify-between items-center px-4 py-2 border-b border-[#E5E5E5]">
+      <header className="w-full top-0 sticky z-50 bg-white shadow-sm flex justify-between items-center px-4 py-2 border-b border-border/50">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-primary/10 relative">
             <Image
@@ -48,31 +48,31 @@ export default function DeliveryCompletedScreen() {
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary text-white mb-4 animate-bounce-subtle">
             <span className="material-symbols-outlined text-[48px] font-bold">task_alt</span>
           </div>
-          <h1 className="text-2xl font-extrabold text-slate-900 mb-1">تم التوصيل بنجاح!</h1>
-          <p className="text-gray-600 text-base">لقد تم تسليم الطرد الخاص بك بأمان.</p>
+          <h1 className="text-2xl font-extrabold text-text-primary mb-1">تم التوصيل بنجاح!</h1>
+          <p className="text-text-secondary text-base">لقد تم تسليم الطرد الخاص بك بأمان.</p>
         </section>
 
         <div className="grid grid-cols-1 gap-4">
 
-          <div className="bg-white rounded-xl p-5 shadow-sm border border-[#E5E5E5]">
+          <div className="bg-white rounded-xl p-5 shadow-sm border border-border/50">
             <div className="flex justify-between items-start mb-4">
               <div>
-                <p className="text-[11px] text-gray-600 uppercase tracking-wider">رقم معرف الطلب</p>
-                <h3 className="text-xl font-bold text-slate-900">#DEL-882941</h3>
+                <p className="text-[11px] text-text-secondary uppercase tracking-wider">رقم معرف الطلب</p>
+                <h3 className="text-xl font-bold text-text-primary">#DEL-882941</h3>
               </div>
               <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold">
                 مدفوع
               </div>
             </div>
 
-            <div className="space-y-4 border-t border-[#E5E5E5] pt-4 text-right">
+            <div className="space-y-4 border-t border-border/50 pt-4 text-right">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-primary/5 text-primary flex items-center justify-center">
                   <span className="material-symbols-outlined">location_on</span>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-600">تم التوصيل إلى</p>
-                  <p className="text-base text-slate-900">241 هاي ستريت، إيست إيند</p>
+                  <p className="text-xs text-text-secondary">تم التوصيل إلى</p>
+                  <p className="text-base text-text-primary">241 هاي ستريت، إيست إيند</p>
                 </div>
               </div>
 
@@ -81,21 +81,21 @@ export default function DeliveryCompletedScreen() {
                   <span className="material-symbols-outlined">schedule</span>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-600">وقت التوصيل</p>
-                  <p className="text-base text-slate-900">اليوم، 2:45 مساءً</p>
+                  <p className="text-xs text-text-secondary">وقت التوصيل</p>
+                  <p className="text-base text-text-primary">اليوم، 2:45 مساءً</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-[#E5E5E5] flex flex-col justify-center text-right">
-              <p className="text-xs text-gray-600 mb-1">التكلفة الإجمالية</p>
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-border/50 flex flex-col justify-center text-right">
+              <p className="text-xs text-text-secondary mb-1">التكلفة الإجمالية</p>
               <p className="text-2xl font-extrabold text-primary">$42.50</p>
-              <p className="text-[11px] text-gray-600 mt-1">تتضمن بقشيش بقيمة $5.00</p>
+              <p className="text-[11px] text-text-secondary mt-1">تتضمن بقشيش بقيمة $5.00</p>
             </div>
 
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-[#E5E5E5] flex flex-col items-center justify-center">
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-border/50 flex flex-col items-center justify-center">
               <div className="w-12 h-12 rounded-full overflow-hidden mb-2 border-2 border-primary relative">
                 <Image
                   className="w-full h-full object-cover"
@@ -105,13 +105,13 @@ export default function DeliveryCompletedScreen() {
                   height={48}
                 />
               </div>
-              <p className="text-sm font-bold text-slate-900">عمر</p>
-              <p className="text-[11px] text-gray-600">السائق الخاص بك</p>
+              <p className="text-sm font-bold text-text-primary">عمر</p>
+              <p className="text-[11px] text-text-secondary">السائق الخاص بك</p>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-5 shadow-sm border border-[#E5E5E5] text-center">
-            <h3 className="text-sm font-bold mb-3 text-slate-900">كيف تقيم تجربة التوصيل؟</h3>
+          <div className="bg-white rounded-xl p-5 shadow-sm border border-border/50 text-center">
+            <h3 className="text-sm font-bold mb-3 text-text-primary">كيف تقيم تجربة التوصيل؟</h3>
 
             <div className="flex justify-center gap-1 mb-4">
               {[1, 2, 3, 4, 5].map((starIndex) => (
@@ -125,7 +125,7 @@ export default function DeliveryCompletedScreen() {
                     className="material-symbols-outlined text-[32px] transition-all duration-150"
                     style={{
                       fontVariationSettings: `'FILL' ${starIndex <= rating ? "1" : "0"}`,
-                      color: starIndex <= rating ? "#EF2B2D" : "#E5E5E5"
+                      color: starIndex <= rating ? "#EF2B2D" : "#CCCCCC"
                     }}
                   >
                     star
@@ -135,7 +135,7 @@ export default function DeliveryCompletedScreen() {
             </div>
 
             <textarea
-              className="w-full bg-slate-50 border border-[#E5E5E5] rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none h-24 text-right"
+              className="w-full bg-surface border border-border/50 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none h-24 text-right"
               placeholder="أضف تعليقًا لعمر..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
@@ -143,7 +143,7 @@ export default function DeliveryCompletedScreen() {
 
             <button
               type="button"
-              className="mt-4 w-full py-3 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-slate-900 rounded-full text-sm font-bold transition-all active:scale-[0.97]"
+              className="mt-4 w-full py-3 bg-surface text-text-secondary hover:bg-primary/5 hover:text-text-primary rounded-full text-sm font-bold transition-all active:scale-[0.97]"
             >
               إرسال التقييم المرتجع
             </button>
@@ -160,15 +160,15 @@ export default function DeliveryCompletedScreen() {
           </Link>
           <button
             type="button"
-            className="w-full py-4 bg-transparent text-gray-600 hover:bg-primary/5 rounded-full text-sm font-bold transition-all active:scale-[0.97]"
+            className="w-full py-4 bg-transparent text-text-secondary hover:bg-primary/5 rounded-full text-sm font-bold transition-all active:scale-[0.97]"
           >
             تحميل فاتورة الطلب
           </button>
         </div>
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 w-full z-50 bg-white border-t border-[#E5E5E5] shadow-[0px_-8px_30px_rgba(0,0,0,0.04)] flex justify-around items-center pt-2 pb-safe">
-        <div className="flex flex-col items-center justify-center text-gray-600 px-4 py-1 hover:bg-primary/5 rounded-xl transition-all active:scale-90 cursor-pointer">
+      <nav className="fixed bottom-0 left-0 right-0 w-full z-50 bg-white border-t border-border/50 shadow-sm flex justify-around items-center pt-2 pb-safe">
+        <div className="flex flex-col items-center justify-center text-text-secondary px-4 py-1 hover:bg-primary/5 rounded-xl transition-all active:scale-90 cursor-pointer">
           <span className="material-symbols-outlined">dashboard</span>
           <span className="text-xs">الرئيسية</span>
         </div>
@@ -176,11 +176,11 @@ export default function DeliveryCompletedScreen() {
           <span className="material-symbols-outlined">local_shipping</span>
           <span className="text-xs font-bold">الطلبات</span>
         </div>
-        <div className="flex flex-col items-center justify-center text-gray-600 px-4 py-1 hover:bg-primary/5 rounded-xl transition-all active:scale-90 cursor-pointer">
+        <div className="flex flex-col items-center justify-center text-text-secondary px-4 py-1 hover:bg-primary/5 rounded-xl transition-all active:scale-90 cursor-pointer">
           <span className="material-symbols-outlined">history</span>
           <span className="text-xs">السجل</span>
         </div>
-        <div className="flex flex-col items-center justify-center text-gray-600 px-4 py-1 hover:bg-primary/5 rounded-xl transition-all active:scale-90 cursor-pointer">
+        <div className="flex flex-col items-center justify-center text-text-secondary px-4 py-1 hover:bg-primary/5 rounded-xl transition-all active:scale-90 cursor-pointer">
           <span className="material-symbols-outlined">payments</span>
           <span className="text-xs">الأرباح</span>
         </div>

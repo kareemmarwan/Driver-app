@@ -11,8 +11,8 @@ export default function SettingsPage() {
     <div className="bg-background min-h-screen p-6" dir="rtl">
       <div className="max-w-md mx-auto">
         <div className="flex items-center gap-3 mb-6">
-          <button onClick={() => router.back()} className="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-sm">
-            <span className="text-2xl transform rotate-180 material-symbols-outlined text-primary">arrow_back</span>
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
+            <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-lg font-bold text-text-primary">الإعدادات</h1>
         </div>

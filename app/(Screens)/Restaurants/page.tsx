@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RestaurantsSkeleton from "@/components/skeletons/RestaurantsSkeleton";
 import EmptyState from '@/components/EmptyState';
@@ -19,6 +20,7 @@ function parseTime(min: string): number {
 }
 
 export default function Restaurants() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("الكل");
   const [searchQuery, setSearchQuery] = useState('');
@@ -69,8 +71,8 @@ export default function Restaurants() {
 
       <header className="sticky top-0 z-50 flex items-center justify-between w-full px-4 transition-all border-b border-border/50 shadow-sm sm:px-6 lg:px-8 bg-white h-14 sm:h-16">
         <div className="flex items-center gap-3 sm:gap-4">
-          <button onClick={() => window.history.back()} className="transition-transform duration-200 active:scale-95 text-primary">
-            <span className="text-xl transform rotate-180 sm:text-2xl material-symbols-outlined">arrow_back</span>
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
+            <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-lg font-bold sm:text-xl lg:text-2xl text-primary">المطاعم</h1>
         </div>

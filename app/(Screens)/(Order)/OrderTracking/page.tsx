@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function TrackingPage() {
+  const router = useRouter();
   const [statusText, setStatusText] = useState('أحمد يقوم باستلام طلبك الآن');
 
   useEffect(() => {
@@ -25,8 +27,8 @@ export default function TrackingPage() {
     <>
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-background shadow-sm">
         <div className="flex items-center gap-2">
-          <button className="material-symbols-outlined text-primary hover:bg-surface transition-colors p-2 rounded-full active:scale-95 transform rotate-180">
-            arrow_back
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
+            <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="font-bold text-xl text-text-primary">تتبع الطلب</h1>
         </div>

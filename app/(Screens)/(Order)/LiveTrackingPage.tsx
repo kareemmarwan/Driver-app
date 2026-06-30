@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 const TIMELINE_STEPS = [
   { id: 1, label: 'تم قبول الطلب', icon: 'check', active: true, current: false },
@@ -12,6 +13,7 @@ const TIMELINE_STEPS = [
 ];
 
 export default function LiveTrackingPage() {
+  const router = useRouter();
   const driverRef = useRef<HTMLDivElement>(null);
   const [etaMinutes] = useState(12);
   const [arrivalTime] = useState('06:45 م');
@@ -48,8 +50,8 @@ export default function LiveTrackingPage() {
 
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full h-16 max-w-md px-4 mx-auto border-b shadow-sm bg-white border-slate-100">
         <div className="flex items-center gap-3">
-          <button className="flex items-center justify-center w-10 h-10 transition-all rounded-full hover:bg-slate-100 active:scale-95 text-slate-700 bg-slate-50/50">
-            <span className="font-semibold material-symbols-outlined">arrow_forward</span>
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
+            <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
           <div className="flex flex-col text-right">
             <span className="text-sm font-bold text-slate-800">طلب رقم #DF-7829</span>

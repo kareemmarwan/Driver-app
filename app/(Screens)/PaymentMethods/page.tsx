@@ -33,7 +33,7 @@ export default function PaymentMethods() {
     <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary" dir="rtl">
 
       <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white shadow-sm flex flex-row justify-between items-center px-4 h-16 border-b border-border/50">
-        <button className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 duration-150 text-primary">
+        <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 duration-150 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
         <h1 className="text-base font-bold text-primary">اختر طريقة الدفع</h1>
@@ -131,7 +131,7 @@ export default function PaymentMethods() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 border shadow-sm bg-amber-400/10 border-amber-400/20 rounded-xl shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 border shadow-sm bg-warning/10 border-warning/20 rounded-xl shrink-0">
                     <img loading="lazy" decoding="async" className="object-contain w-7 h-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCus_yHMMsYkD_CTbvzeiNsDgubTjblRla9Pj9uKyvUnaqF-20xfMkc-Hs5PHjPGGxmemR6Rvu7WOsMFKO1c4me9bzCAfGfq6HhkP_5m-1ZlDhuzGwg_YjP60zDRtphUmMLFSo9lBGt5o6YGZjaKZ50xVNKbJagtS72WM_mBMRYZhZcOaAepEEjya8TfDuiecZCd1HHCBSAbkiwCCLBGDxMsRzOhBA9Kmn_uitSlVBqcZdiWAbb4Qq47e4BAA5WgdB8PYt45bqiYKw" alt="جوال بي" />
                   </div>
                   <span className="font-bold text-xs text-text-primary">المحفظة الإلكترونية (جوال بي)</span>
@@ -177,7 +177,7 @@ export default function PaymentMethods() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 border border-blue-100 shadow-sm bg-blue-50 rounded-xl shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 border border-primary/10 shadow-sm bg-primary/5 rounded-xl shrink-0">
                     <img loading="lazy" decoding="async" className="object-contain w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Xaqa2K9MSJEqfj4yOmSBIkZXyNCB5L0FsAdv4iMDf89lj1lznVMzTzbxlb1ytGUtTIzjX7XeUyWdahnEsiaiNsMUw48oqcnQILMSj8a2rWSNyp20pFZASR1kRg95FAzFq1DYcjbr4Zg7tlI0SfLfbKCQI0BxiZv2dM987YzCIm9_99a14eYQwZ-FkuijrPLeK9TvLMPTXw9zay2m3fJy-evMkdBeYd9kaA9BQRJ9UVGACrR_CkN22jzHYTXOTGACQq-ZM7Gm6p8" alt="بايبال" />
                   </div>
                   <span className="font-bold text-xs text-text-primary">حساب بايبال المعتمد (PayPal)</span>

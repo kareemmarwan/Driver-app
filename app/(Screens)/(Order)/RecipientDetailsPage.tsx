@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RecipientDetailsPage() {
+  const router = useRouter();
   const [leaveAtDoor, setLeaveAtDoor] = useState(false);
   const [directHandoff, setDirectHandoff] = useState(true);
 
@@ -11,11 +13,11 @@ export default function RecipientDetailsPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-slate-50 text-slate-900 flex flex-col relative pb-36">
+    <div className="max-w-md mx-auto min-h-screen bg-background text-text-primary flex flex-col relative pb-36">
 
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-50 flex justify-between items-center px-4 h-16 bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-50 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border/50">
         <div className="flex items-center gap-3">
-          <button className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/5 transition-colors active:scale-95 text-primary">
+          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
             <span className="material-symbols-outlined transform rotate-180">arrow_back</span>
           </button>
           <h1 className="text-base font-bold text-primary">توصيل جديد</h1>
@@ -30,7 +32,7 @@ export default function RecipientDetailsPage() {
         <div className="flex gap-2 mt-2">
           <div className="flex-grow h-1 bg-primary rounded-full" />
           <div className="flex-grow h-1 bg-primary rounded-full" />
-          <div className="flex-grow h-1 bg-[#E5E5E5] rounded-full" />
+          <div className="flex-grow h-1 bg-border rounded-full" />
         </div>
 
         <section>
@@ -53,17 +55,17 @@ export default function RecipientDetailsPage() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <span className="material-symbols-outlined text-xl">person</span>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-600">تفاصيل الاتصال</h3>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary">تفاصيل الاتصال</h3>
             </div>
 
             <div className="space-y-3 text-right">
               <div>
-                <label className="block text-xs font-bold text-gray-600 mb-1 mr-1" htmlFor="recipient_name">
+                <label className="block text-xs font-bold text-text-secondary mb-1 mr-1" htmlFor="recipient_name">
                   اسم المستلم ثنائي أو ثلاثي
                 </label>
-                <div className="relative flex items-center border border-[#E5E5E5] bg-white rounded-xl focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+                <div className="relative flex items-center border border-border/50 bg-white rounded-xl focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
                   <input
-                    className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-gray-400 text-right outline-none"
+                    className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-placeholder text-right outline-none"
                     id="recipient_name"
                     placeholder="من الشخص الذي سيستلم الطرد؟"
                     type="text"
@@ -72,15 +74,15 @@ export default function RecipientDetailsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-600 mb-1 mr-1" htmlFor="phone_number">
+                <label className="block text-xs font-bold text-text-secondary mb-1 mr-1" htmlFor="phone_number">
                   رقم الجوال الفعال
                 </label>
-                <div className="relative flex items-center border border-[#E5E5E5] bg-white rounded-xl focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all" dir="ltr">
-                  <div className="flex items-center pl-4 pr-3 border-r border-[#E5E5E5] text-sm font-bold text-gray-600 font-mono">
+                <div className="relative flex items-center border border-border/50 bg-white rounded-xl focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all" dir="ltr">
+                  <div className="flex items-center pl-4 pr-3 border-r border-border/50 text-sm font-bold text-text-secondary font-mono">
                     +970
                   </div>
                   <input
-                    className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-gray-400 font-mono text-left outline-none"
+                    className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-placeholder font-mono text-left outline-none"
                     id="phone_number"
                     placeholder="59-XXXX-XXX"
                     type="tel"
@@ -96,29 +98,29 @@ export default function RecipientDetailsPage() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <span className="material-symbols-outlined text-xl">location_on</span>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-600">تفاصيل مكان التسليم</h3>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary">تفاصيل مكان التسليم</h3>
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-right">
               <div>
-                <label className="block text-xs font-bold text-gray-600 mb-1 mr-1" htmlFor="floor">الطابق</label>
-                <div className="relative flex items-center border border-[#E5E5E5] bg-white rounded-xl focus-within:border-primary transition-all">
-                  <input className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-gray-400 text-right outline-none" id="floor" placeholder="مثال: الطابق الرابع" type="text" />
+                <label className="block text-xs font-bold text-text-secondary mb-1 mr-1" htmlFor="floor">الطابق</label>
+                <div className="relative flex items-center border border-border/50 bg-white rounded-xl focus-within:border-primary transition-all">
+                  <input className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-placeholder text-right outline-none" id="floor" placeholder="مثال: الطابق الرابع" type="text" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-600 mb-1 mr-1" htmlFor="apartment">رقم الشقة / المكتب</label>
-                <div className="relative flex items-center border border-[#E5E5E5] bg-white rounded-xl focus-within:border-primary transition-all">
-                  <input className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-gray-400 text-right outline-none" id="apartment" placeholder="مثال: شقة رقم ١٢" type="text" />
+                <label className="block text-xs font-bold text-text-secondary mb-1 mr-1" htmlFor="apartment">رقم الشقة / المكتب</label>
+                <div className="relative flex items-center border border-border/50 bg-white rounded-xl focus-within:border-primary transition-all">
+                  <input className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-placeholder text-right outline-none" id="apartment" placeholder="مثال: شقة رقم ١٢" type="text" />
                 </div>
               </div>
             </div>
 
             <div className="text-right">
-              <label className="block text-xs font-bold text-gray-600 mb-1 mr-1" htmlFor="instructions">تعليمات تسليم خاصة للمندوب</label>
-              <div className="relative flex items-start border border-[#E5E5E5] bg-white rounded-xl focus-within:border-primary transition-all">
+              <label className="block text-xs font-bold text-text-secondary mb-1 mr-1" htmlFor="instructions">تعليمات تسليم خاصة للمندوب</label>
+              <div className="relative flex items-start border border-border/50 bg-white rounded-xl focus-within:border-primary transition-all">
                 <textarea
-                  className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-gray-400 resize-none text-right outline-none"
+                  className="w-full bg-transparent border-none focus:ring-0 px-4 py-3.5 text-sm placeholder:text-placeholder resize-none text-right outline-none"
                   id="instructions"
                   placeholder="أكواد البوابة الأمنية، رن الجرس، اترك الأغراض عند موظف الاستقبال، إلخ."
                   rows={3}
@@ -130,42 +132,42 @@ export default function RecipientDetailsPage() {
           <div className="space-y-3">
             <label
               onClick={() => setLeaveAtDoor(!leaveAtDoor)}
-              className="flex items-center justify-between p-4 bg-white border border-[#E5E5E5] rounded-2xl shadow-sm cursor-pointer active:scale-[0.99] transition-transform select-none"
+              className="flex items-center justify-between p-4 bg-white border border-border/50 rounded-2xl shadow-sm cursor-pointer active:scale-[0.99] transition-transform select-none"
             >
               <div className="flex items-center gap-3 text-right">
                 <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary shrink-0">
                   <span className="material-symbols-outlined text-xl">door_front</span>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900">اترك الطلب عند عتبة الباب</p>
-                  <p className="text-[10px] text-gray-600 mt-0.5">سيقوم الكابتن بالتقاط صورة فوتوغرافية وإرسالها لك للتأكيد</p>
+                  <p className="text-xs font-bold text-text-primary">اترك الطلب عند عتبة الباب</p>
+                  <p className="text-[10px] text-text-secondary mt-0.5">سيقوم الكابتن بالتقاط صورة فوتوغرافية وإرسالها لك للتأكيد</p>
                 </div>
               </div>
               <input
                 checked={leaveAtDoor}
                 onChange={() => {}}
-                className="w-5 h-5 rounded-md border-[#E5E5E5] text-primary focus:ring-primary cursor-pointer"
+                className="w-5 h-5 rounded-md border-border/50 text-primary focus:ring-primary cursor-pointer"
                 type="checkbox"
               />
             </label>
 
             <label
               onClick={() => setDirectHandoff(!directHandoff)}
-              className="flex items-center justify-between p-4 bg-white border border-[#E5E5E5] rounded-2xl shadow-sm cursor-pointer active:scale-[0.99] transition-transform select-none"
+              className="flex items-center justify-between p-4 bg-white border border-border/50 rounded-2xl shadow-sm cursor-pointer active:scale-[0.99] transition-transform select-none"
             >
               <div className="flex items-center gap-3 text-right">
                 <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary shrink-0">
                   <span className="material-symbols-outlined text-xl">notifications_active</span>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900">تسليم يدوي مباشر مشروط</p>
-                  <p className="text-[10px] text-gray-600 mt-0.5">يجب على المستلم التوقيع على شاشة الهاتف لاستلام الطرد</p>
+                  <p className="text-xs font-bold text-text-primary">تسليم يدوي مباشر مشروط</p>
+                  <p className="text-[10px] text-text-secondary mt-0.5">يجب على المستلم التوقيع على شاشة الهاتف لاستلام الطرد</p>
                 </div>
               </div>
               <input
                 checked={directHandoff}
                 onChange={() => {}}
-                className="w-5 h-5 rounded-md border-[#E5E5E5] text-primary focus:ring-primary cursor-pointer"
+                className="w-5 h-5 rounded-md border-border/50 text-primary focus:ring-primary cursor-pointer"
                 type="checkbox"
               />
             </label>
@@ -174,7 +176,7 @@ export default function RecipientDetailsPage() {
         </section>
       </main>
 
-      <footer className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/80 backdrop-blur-lg border-t border-[#E5E5E5] p-4 z-50">
+      <footer className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-border/50 p-4 z-50">
         <button
           onClick={handleNextStep}
           className="w-full h-14 bg-primary text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/10 active:scale-95 transition-all"
