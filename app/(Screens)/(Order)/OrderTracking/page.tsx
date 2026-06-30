@@ -42,7 +42,7 @@ export default function TrackingPage() {
         <div className="relative w-full h-[350px] md:h-[400px] overflow-hidden md:rounded-2xl md:mt-4 md:shadow-md">
           <div className="w-full h-full bg-surface flex items-center justify-center relative">
 
-            <img
+            <img loading="lazy" decoding="async"
               className="w-full h-full object-cover grayscale-[20%] opacity-90"
               alt="خريطة تتبع خط السير في مدينة غزة"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmuzTG4P4reMUHan30yV6qhQvDSE5PAlsvJ6ujIWvn_lxAYIT22R6QfTciMLTg2Lihv864BSNalzZ8okWVOt3cc4wCR0gqL4Q5-RHoxTJpCAfiBbjS6uX1IYDx3Ux5NUvSLol5cHyJ0ZnXmA2BK_FovXE8Jpo3TkdNtK8IzX1_1FG_chXVyoqUV7N6Fiu88HIN7T4sbjUBfPWEXE88m-Uarz888pZKO8gAMwPm3wnqppK7UcJ25wT1pG3EiEeOjq508WVeNmnFdW0"
@@ -115,7 +115,7 @@ export default function TrackingPage() {
           <div className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between border border-border/50">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary flex-shrink-0">
-                <img
+                <img loading="lazy" decoding="async"
                   className="object-cover w-full h-full"
                   alt="صورة السائق أحمد"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPpbdwSgdl2LLrCOYMZbCvb8yp0LTQl2AW3J-rx2FmzMxPZ18rgDqkOvoyQ93KDsb0U5xjpJNdsJddbbd3R1lL2C-4IIjXBqABpJVNd242bH4JpE6reBcZG3AHWGoftTc9RDtWBiPav3hzkzDVz1o_4XZJEs4EorDBUEd90ypHy0RZ7FY-6mb7-3XBWq61jmvypFgsT3LAd2RZCuW3nodLjMH8LYUDo2NPTvwGhiOB6U4r3xExOgd2EwC8JaBS1JdGSxYpJ7OY9eA"

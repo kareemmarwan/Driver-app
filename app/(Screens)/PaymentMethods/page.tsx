@@ -86,7 +86,7 @@ export default function PaymentMethods() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-surface border border-border/10 rounded-xl flex items-center justify-center shadow-sm shrink-0">
-                    <img className="object-contain w-7 h-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAiDXX4n5KMYKNf89RAFCarQ8NQ2MCe2S7KQkH0bWsliDI1PtXE9Xi8x3p9EJ5Vf7FOVQT4TKfQo9Pu0Cq3uu0pzTegkKIgPqOpJ_ktxNx_03zgs5tNTZdfzpjEw8qLWTllwojmubrz-NWr-h5BqXbzpYAK8_ixsl8TxBjYULLglyj9pPvFO5HsavKkGbKRlgfLkpJ1UpvEDHw6GxmDyOppXnEafxmQSs9QtxVK2tPeg0dLdyIN3VoDnnaY1Rr9DEnQiGQaE0TF70" alt="بنك فلسطين" />
+                    <img loading="lazy" decoding="async" className="object-contain w-7 h-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAiDXX4n5KMYKNf89RAFCarQ8NQ2MCe2S7KQkH0bWsliDI1PtXE9Xi8x3p9EJ5Vf7FOVQT4TKfQo9Pu0Cq3uu0pzTegkKIgPqOpJ_ktxNx_03zgs5tNTZdfzpjEw8qLWTllwojmubrz-NWr-h5BqXbzpYAK8_ixsl8TxBjYULLglyj9pPvFO5HsavKkGbKRlgfLkpJ1UpvEDHw6GxmDyOppXnEafxmQSs9QtxVK2tPeg0dLdyIN3VoDnnaY1Rr9DEnQiGQaE0TF70" alt="بنك فلسطين" />
                   </div>
                   <span className="font-bold text-xs text-text-primary">حساب بنك فلسطين</span>
                 </div>
@@ -132,7 +132,7 @@ export default function PaymentMethods() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center justify-center w-10 h-10 border shadow-sm bg-amber-400/10 border-amber-400/20 rounded-xl shrink-0">
-                    <img className="object-contain w-7 h-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCus_yHMMsYkD_CTbvzeiNsDgubTjblRla9Pj9uKyvUnaqF-20xfMkc-Hs5PHjPGGxmemR6Rvu7WOsMFKO1c4me9bzCAfGfq6HhkP_5m-1ZlDhuzGwg_YjP60zDRtphUmMLFSo9lBGt5o6YGZjaKZ50xVNKbJagtS72WM_mBMRYZhZcOaAepEEjya8TfDuiecZCd1HHCBSAbkiwCCLBGDxMsRzOhBA9Kmn_uitSlVBqcZdiWAbb4Qq47e4BAA5WgdB8PYt45bqiYKw" alt="جوال بي" />
+                    <img loading="lazy" decoding="async" className="object-contain w-7 h-7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCus_yHMMsYkD_CTbvzeiNsDgubTjblRla9Pj9uKyvUnaqF-20xfMkc-Hs5PHjPGGxmemR6Rvu7WOsMFKO1c4me9bzCAfGfq6HhkP_5m-1ZlDhuzGwg_YjP60zDRtphUmMLFSo9lBGt5o6YGZjaKZ50xVNKbJagtS72WM_mBMRYZhZcOaAepEEjya8TfDuiecZCd1HHCBSAbkiwCCLBGDxMsRzOhBA9Kmn_uitSlVBqcZdiWAbb4Qq47e4BAA5WgdB8PYt45bqiYKw" alt="جوال بي" />
                   </div>
                   <span className="font-bold text-xs text-text-primary">المحفظة الإلكترونية (جوال بي)</span>
                 </div>
@@ -178,7 +178,7 @@ export default function PaymentMethods() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center justify-center w-10 h-10 border border-blue-100 shadow-sm bg-blue-50 rounded-xl shrink-0">
-                    <img className="object-contain w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Xaqa2K9MSJEqfj4yOmSBIkZXyNCB5L0FsAdv4iMDf89lj1lznVMzTzbxlb1ytGUtTIzjX7XeUyWdahnEsiaiNsMUw48oqcnQILMSj8a2rWSNyp20pFZASR1kRg95FAzFq1DYcjbr4Zg7tlI0SfLfbKCQI0BxiZv2dM987YzCIm9_99a14eYQwZ-FkuijrPLeK9TvLMPTXw9zay2m3fJy-evMkdBeYd9kaA9BQRJ9UVGACrR_CkN22jzHYTXOTGACQq-ZM7Gm6p8" alt="بايبال" />
+                    <img loading="lazy" decoding="async" className="object-contain w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Xaqa2K9MSJEqfj4yOmSBIkZXyNCB5L0FsAdv4iMDf89lj1lznVMzTzbxlb1ytGUtTIzjX7XeUyWdahnEsiaiNsMUw48oqcnQILMSj8a2rWSNyp20pFZASR1kRg95FAzFq1DYcjbr4Zg7tlI0SfLfbKCQI0BxiZv2dM987YzCIm9_99a14eYQwZ-FkuijrPLeK9TvLMPTXw9zay2m3fJy-evMkdBeYd9kaA9BQRJ9UVGACrR_CkN22jzHYTXOTGACQq-ZM7Gm6p8" alt="بايبال" />
                   </div>
                   <span className="font-bold text-xs text-text-primary">حساب بايبال المعتمد (PayPal)</span>
                 </div>

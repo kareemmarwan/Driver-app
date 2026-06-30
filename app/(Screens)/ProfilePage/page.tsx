@@ -90,7 +90,7 @@ export default function ProfilePage() {
             <section className="bg-white p-6 rounded-3xl border border-border/50 flex items-center gap-4 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 -mt-10 -mr-10 transition-all rounded-full bg-primary/5 blur-xl group-hover:bg-primary/10" />
               <div className="relative w-20 h-20 overflow-hidden rounded-full shadow-md ring-4 ring-primary/10 shrink-0">
-                <img
+                <img loading="lazy" decoding="async"
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
                   alt="كريم مروان"

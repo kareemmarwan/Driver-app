@@ -102,7 +102,7 @@ export default function ProductDetailsPage() {
 
       <main className="pt-20 px-4 max-w-lg mx-auto">
         <div className="w-full aspect-square rounded-3xl overflow-hidden bg-white shadow-sm border border-border/10">
-          <img src={product.image} alt={product.name} className="object-cover w-full h-full" />
+          <img loading="lazy" decoding="async" src={product.image} alt={product.name} className="object-cover w-full h-full" />
         </div>
 
         <div className="mt-4">

@@ -113,7 +113,7 @@ export default function OrderSummary() {
             {currentOrder.items.map((item) => (
               <div key={item.id} className="flex items-start gap-3">
                 <div className="w-14 h-14 overflow-hidden border shadow-sm rounded-xl bg-surface shrink-0 border-border/50">
-                  <img className="object-cover w-full h-full" src={item.image} alt={item.name} />
+                  <img loading="lazy" decoding="async" className="object-cover w-full h-full" src={item.image} alt={item.name} />
                 </div>
                 <div className="flex-1 text-right">
                   <p className="text-xs font-bold text-text-primary">{item.name}</p>
@@ -153,7 +153,7 @@ export default function OrderSummary() {
         </section>
 
         <div className="h-32 overflow-hidden border shadow-sm rounded-2xl border-border/50 grayscale opacity-80">
-          <img className="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZEn8juJJamZi2psisQo_Mkpib_udnUjbL0uP6naqWtXYrIuxoDtuhHVlTLvvuvQaQUriawAv-nve9cvb9SuRVheDri-sBJWgk74kbKUvGJZbJmCuxEL8oAhLfu6KzPxPSLoYEN94LfNBuexJlc1bUBevDvHj-u-qCY5wRPQfbQCA9wURVvMEEIsNy2xoGnI5F5zGu493VzUkfxHBqS0izYtY0nN-eECNQr_399SOdRlX8oi9vDn0watuzCBhSgPKuq7f0C7eypw8" alt="خريطة المسار المصغرة للتوصيل" />
+          <img loading="lazy" decoding="async" className="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZEn8juJJamZi2psisQo_Mkpib_udnUjbL0uP6naqWtXYrIuxoDtuhHVlTLvvuvQaQUriawAv-nve9cvb9SuRVheDri-sBJWgk74kbKUvGJZbJmCuxEL8oAhLfu6KzPxPSLoYEN94LfNBuexJlc1bUBevDvHj-u-qCY5wRPQfbQCA9wURVvMEEIsNy2xoGnI5F5zGu493VzUkfxHBqS0izYtY0nN-eECNQr_399SOdRlX8oi9vDn0watuzCBhSgPKuq7f0C7eypw8" alt="خريطة المسار المصغرة للتوصيل" />
         </div>
 
       </main>

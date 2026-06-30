@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import StoreDetailsSkeleton from "@/components/skeletons/StoreDetailsSkeleton";
+import ProductCard from '@/components/ProductCard';
 import { useCartStore } from '@/lib/store/cartStore';
 import { useWishlistStore } from '@/lib/store/wishlistStore';
 import { STORE_CATEGORIES, BEST_SELLERS, ALL_PRODUCTS } from "@/lib/data";
@@ -89,7 +90,7 @@ export default function StoreDetails() {
 
           <div className="absolute z-10 -bottom-6 right-4 sm:right-6">
             <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 p-2 overflow-hidden bg-white border-4 rounded-[20px] shadow-md border-white">
-              <img className="object-contain w-full h-full rounded-[12px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLSDbm_tVG1fsHBL7EOZFxy7eBLzZcNtPiHqO98alGT2oVATgz3eIPa4LGdrLCNTKlKEHeSZ8G3HRsHu3nOW0CWWmrST16B4-jVS4DTOK_8Sl71B45y_40L3KV4Egfq7UIyOGamEABnanHTlz94VE7QbYeDOCvsMeDNKIY8gIl9g1kfWqOX1lzEnD-WU43DbhmEpsLyN0g_5cuBxcAtW0MvlvQYT0Uijnm8yJK7tM4A3kFsJYE9HltCezmN1IQiqpHujcyCUBf6Es" alt="شعار المخبز" />
+              <img loading="lazy" decoding="async" className="object-contain w-full h-full rounded-[12px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLSDbm_tVG1fsHBL7EOZFxy7eBLzZcNtPiHqO98alGT2oVATgz3eIPa4LGdrLCNTKlKEHeSZ8G3HRsHu3nOW0CWWmrST16B4-jVS4DTOK_8Sl71B45y_40L3KV4Egfq7UIyOGamEABnanHTlz94VE7QbYeDOCvsMeDNKIY8gIl9g1kfWqOX1lzEnD-WU43DbhmEpsLyN0g_5cuBxcAtW0MvlvQYT0Uijnm8yJK7tM4A3kFsJYE9HltCezmN1IQiqpHujcyCUBf6Es" alt="شعار المخبز" />
             </div>
           </div>
         </section>
@@ -225,46 +226,14 @@ export default function StoreDetails() {
           <h2 className="mb-4 text-sm font-bold sm:text-base text-text-primary">جميع المنتجات</h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {ALL_PRODUCTS.map((product) => (
-              <div
+              <ProductCard
                 key={product.id}
+                product={product}
+                isWishlisted={isWishlisted(product.id)}
                 onClick={() => router.push(`/ProductDetailsPage/${product.id}?storeId=${storeId}`)}
-                className="bg-white rounded-[24px] shadow-sm overflow-hidden border border-border/50 group transition-all duration-300 hover:shadow-md flex flex-col justify-between cursor-pointer"
-              >
-                <div>
-                  <div className="relative w-full h-36">
-                    <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${product.image}')` }} />
-                    <button
-                      onClick={(e) => { e.stopPropagation(); toggleItem({ id: product.id, name: product.name, image: product.image, price: product.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' }); }}
-                      className="absolute top-2 left-2 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white active:scale-90 transition-all"
-                    >
-                      <span
-                        className={`material-symbols-outlined text-[16px] ${isWishlisted(product.id) ? 'text-error' : 'text-text-secondary'}`}
-                        style={{ fontVariationSettings: `'FILL' ${isWishlisted(product.id) ? 1 : 0}` }}
-                      >
-                        favorite
-                      </span>
-                    </button>
-                  </div>
-                  <div className="p-3.5 pb-0">
-                    <h5 className="text-xs font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-2 min-h-[32px]">{product.name}</h5>
-                    <div className="flex items-center gap-0.5 mt-1 bg-surface w-fit px-1.5 py-0.5 rounded-[6px] border border-border/50">
-                      <span className="material-symbols-outlined text-primary text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                      <span className="text-[11px] text-text-primary font-bold">{product.rating}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-3.5 pt-2">
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-sm font-bold text-primary">{product.priceDisplay}</span>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}
-                      className="flex items-center justify-center transition-all rounded-full shadow-sm w-9 h-9 bg-primary-light text-primary hover:bg-primary hover:text-white active:scale-90"
-                    >
-                      <span className="material-symbols-outlined text-[20px]">add</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+                onToggleFav={(e) => { e.stopPropagation(); toggleItem({ id: product.id, name: product.name, image: product.image, price: product.priceDisplay || '', storeName: 'مخبز الموقد الذهبي' }); }}
+                onAddToCart={(e) => { e.stopPropagation(); handleAddToCart(product); }}
+              />
             ))}
           </div>
         </section>

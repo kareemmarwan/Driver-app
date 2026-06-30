@@ -87,7 +87,7 @@ export default function Cart() {
             {cartItems.map((item) => (
               <div key={item.id} className="bg-white p-3 rounded-2xl shadow-sm border border-border/50 flex items-center gap-4">
                 <div className="w-20 h-20 overflow-hidden rounded-xl bg-surface border border-border/10 shrink-0">
-                  <img className="object-cover w-full h-full" src={item.image} alt={item.name} />
+                  <img loading="lazy" decoding="async" className="object-cover w-full h-full" src={item.image} alt={item.name} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-bold truncate text-text-primary">{item.name}</h3>
