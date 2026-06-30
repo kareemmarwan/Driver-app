@@ -75,7 +75,7 @@ export default function SplashScreen({ onReady }: { onReady?: () => void }) {
         <div className="mb-8 animate-logo animate-entry">
           <div className="relative group">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-primary-light flex items-center justify-center drop-shadow-xl">
-              <span className="material-symbols-outlined text-[64px] md:text-[80px] text-primary">local_shipping</span>
+              <img src="/icons/rovo.png" alt="Gaza Express" className="w-16 h-16 md:w-24 md:h-24 object-contain" />
             </div>
             <div className="absolute inset-0 transition-all duration-700 scale-125 rounded-full bg-primary/20 blur-2xl -z-10 group-hover:bg-primary/30"></div>
           </div>

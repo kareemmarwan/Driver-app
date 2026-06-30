@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   },
   description: 'تطبيق توصيل الطلبات في فلسطين - طرد، هدايا، مستندات، مشتريات، مطاعم',
   keywords: ['توصيل', 'فلسطين', 'غزة', 'دري فري', 'Dreefree', 'طلب توصيل'],
+  icons: {
+    icon: '/icons/rovo.jpeg',
+    apple: '/icons/rovo.jpeg',
+  },
   openGraph: {
     title: 'دري فري - Dreefree',
     description: 'تطبيق توصيل الطلبات في فلسطين',

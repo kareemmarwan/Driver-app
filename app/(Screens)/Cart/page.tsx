@@ -62,7 +62,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary pb-52" dir="rtl">
+    <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary" dir="rtl">
 
       <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border">
         <div className="flex items-center gap-4">
@@ -220,7 +220,7 @@ export default function Cart() {
         </section>
       </main>
 
-      <footer className="fixed bottom-28 left-4 right-4 max-w-[26rem] mx-auto bg-white/95 backdrop-blur-md p-4 shadow-sm border border-border/30 z-40 rounded-2xl">
+      <footer className="bg-white/95 backdrop-blur-md p-4 mx-4 mb-4 shadow-sm border border-border/30 rounded-2xl">
         <div className="flex items-center justify-between px-1 mb-3">
           <div>
             <p className="text-[10px] font-bold text-text-secondary text-right">المبلغ الإجمالي المطلوب</p>
