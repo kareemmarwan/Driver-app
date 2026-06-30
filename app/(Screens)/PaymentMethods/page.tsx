@@ -30,7 +30,7 @@ export default function PaymentMethods() {
   };
 
   return (
-    <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary pb-52" dir="rtl">
+    <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary" dir="rtl">
 
       <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white/90 backdrop-blur-md shadow-sm flex flex-row justify-between items-center px-4 h-16 border-b border-border">
         <button className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 duration-150 text-primary">
@@ -261,7 +261,7 @@ export default function PaymentMethods() {
 
       </main>
 
-      <footer className="fixed bottom-28 left-4 right-4 max-w-[26rem] mx-auto bg-white/95 backdrop-blur-md p-4 shadow-sm border border-border/30 z-40 rounded-2xl">
+      <footer className="bg-white/95 backdrop-blur-md p-4 mx-4 mb-4 shadow-sm border border-border/30 rounded-2xl">
         <button
           onClick={handleConfirmPayment} className="w-full h-14 bg-primary text-white rounded-xl font-bold text-sm shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
           <span>تأكيد عمليات الدفع والطلب</span>

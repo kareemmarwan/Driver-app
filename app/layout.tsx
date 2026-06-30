@@ -49,7 +49,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#EF2B2D" />
       </head>
-      <body className="min-h-screen flex flex-col bg-background" style={{ fontFamily: "'Cairo', system-ui, -apple-system, sans-serif" }} suppressHydrationWarning={true}>
+      <body className="flex flex-col min-h-screen bg-background" style={{ fontFamily: "'Cairo', system-ui, -apple-system, sans-serif" }} suppressHydrationWarning={true}>
 
         <PWARegister />
         <ThemeProvider>

@@ -48,7 +48,7 @@ export default function OrderSummary() {
   };
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-background text-text-primary flex flex-col relative pb-52" dir="rtl">
+    <div className="max-w-md mx-auto min-h-screen bg-background text-text-primary flex flex-col relative" dir="rtl">
 
       <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white shadow-sm flex justify-between items-center px-4 h-16 border-b border-border">
         <button className="flex items-center justify-center w-10 h-10 transition-colors rounded-full hover:bg-primary/5 active:scale-95 text-primary">
@@ -158,7 +158,7 @@ export default function OrderSummary() {
 
       </main>
 
-      <footer className="fixed bottom-28 left-4 right-4 max-w-[26rem] mx-auto bg-white/95 backdrop-blur-md p-4 shadow-sm border border-border/30 z-40 rounded-2xl">
+      <footer className="bg-white/95 backdrop-blur-md p-4 mx-4 mb-4 shadow-sm border border-border/30 rounded-2xl">
         <div className="flex items-end justify-between px-1 mb-4">
           <div className="text-right">
             <p className="text-[11px] font-bold text-text-secondary">إجمالي المبلغ النهائي</p>
