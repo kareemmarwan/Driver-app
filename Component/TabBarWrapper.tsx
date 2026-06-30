@@ -14,6 +14,8 @@ const HIDE_TAB_BAR_ROUTES = [
   "/OrderTracking",
   "/LiveTracking",
   "/DeliveryCompleted",
+  "/Cart",
+  "/ProductDetailsPage",
 ];
 
 export default function TabBarWrapper({ children }: { children: React.ReactNode }) {
