@@ -34,8 +34,8 @@ export default function ProductDetailsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] text-[#151e16] antialiased pb-32" dir="rtl">
-        <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white/95 backdrop-blur-xl border-b border-[#bbcbba]/20">
+      <div className="min-h-screen bg-background text-text-primary antialiased pb-32" dir="rtl">
+        <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white/95 backdrop-blur-xl border-b border-border">
           <div className="skeleton w-10 h-10 rounded-full" />
           <div className="skeleton h-5 w-24" />
           <div className="w-10" />
@@ -49,10 +49,10 @@ export default function ProductDetailsPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center" dir="rtl">
+      <div className="min-h-screen bg-background flex items-center justify-center" dir="rtl">
         <div className="text-center">
-          <p className="text-[#5f5e5e]">المنتج غير موجود</p>
-          <Link href="/" className="text-[#006d34] font-bold mt-2 inline-block">العودة للرئيسية</Link>
+          <p className="text-text-secondary">المنتج غير موجود</p>
+          <Link href="/" className="text-primary font-bold mt-2 inline-block">العودة للرئيسية</Link>
         </div>
       </div>
     );
@@ -85,32 +85,32 @@ export default function ProductDetailsPage() {
 
   const sectionTitle = (icon: string, title: string) => (
     <div className="flex items-center gap-1.5 mb-3">
-      <span className="material-symbols-outlined text-[#006d34] text-xl">{icon}</span>
-      <h3 className="text-sm font-bold text-[#151e16]">{title}</h3>
+      <span className="material-symbols-outlined text-primary text-xl">{icon}</span>
+      <h3 className="text-sm font-bold text-text-primary">{title}</h3>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#151e16] antialiased pb-32" dir="rtl">
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white/95 backdrop-blur-xl border-b border-[#bbcbba]/20">
-        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-[#006d34] hover:bg-gray-50 active:scale-95 border border-[#bbcbba]/20">
+    <div className="min-h-screen bg-background text-text-primary antialiased pb-32" dir="rtl">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white/95 backdrop-blur-xl border-b border-border">
+        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-primary hover:bg-gray-50 active:scale-95 border border-border">
           <span className="text-2xl material-symbols-outlined">arrow_back</span>
         </Link>
-        <h1 className="text-sm font-bold">تفاصيل المنتج</h1>
+        <h1 className="text-sm font-bold text-text-primary">تفاصيل المنتج</h1>
         <div className="w-10" />
       </header>
 
       <main className="pt-20 px-4 max-w-lg mx-auto">
-        <div className="w-full aspect-square rounded-3xl overflow-hidden bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-[#bbcbba]/10">
+        <div className="w-full aspect-square rounded-3xl overflow-hidden bg-white shadow-sm border border-border/10">
           <img src={product.image} alt={product.name} className="object-cover w-full h-full" />
         </div>
 
         <div className="mt-4">
-          <h2 className="text-xl font-bold">{product.name}</h2>
-          <p className="text-sm text-[#5f5e5e] mt-1 leading-relaxed">{product.description}</p>
+          <h2 className="text-xl font-bold text-text-primary">{product.name}</h2>
+          <p className="text-sm text-text-secondary mt-1 leading-relaxed">{product.description}</p>
           <div className="flex items-center gap-1.5 mt-2">
             <span className="material-symbols-outlined text-[#FFD700] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="text-sm font-bold">{product.rating}</span>
+            <span className="text-sm font-bold text-text-primary">{product.rating}</span>
           </div>
         </div>
 
@@ -123,30 +123,30 @@ export default function ProductDetailsPage() {
                 onClick={() => setSelectedSize(idx)}
                 className={`flex-1 py-3 rounded-2xl text-sm font-bold transition-all border ${
                   selectedSize === idx
-                    ? 'bg-[#006d34] text-white border-[#006d34] shadow-lg shadow-[#006d34]/20'
-                    : 'bg-white text-[#5f5e5e] border-[#bbcbba]/30 hover:border-[#006d34]/30'
+                    ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20'
+                    : 'bg-white text-text-secondary border-border/30 hover:border-primary/30'
                 }`}
               >
                 <div>{size.label}</div>
-                <div className={`text-xs mt-0.5 ${selectedSize === idx ? 'text-white/80' : 'text-[#5f5e5e]'}`}>{size.suffix || '—'}</div>
+                <div className={`text-xs mt-0.5 ${selectedSize === idx ? 'text-white/80' : 'text-text-secondary'}`}>{size.suffix || '—'}</div>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-6 p-4 bg-white rounded-2xl border border-[#bbcbba]/10 shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
-          <span className="text-sm font-bold">الكمية</span>
+        <div className="flex items-center justify-between mt-6 p-4 bg-white rounded-2xl border border-border/10 shadow-sm">
+          <span className="text-sm font-bold text-text-primary">الكمية</span>
           <div className="flex items-center gap-4">
             <button
               onClick={() => setQuantity(q => Math.max(1, q - 1))}
-              className="flex items-center justify-center w-10 h-10 transition-all bg-[#00d26a]/10 rounded-xl text-[#006d34] hover:bg-[#00d26a]/20 active:scale-90"
+              className="flex items-center justify-center w-10 h-10 transition-all bg-primary-light rounded-xl text-primary hover:bg-primary/20 active:scale-90"
             >
               <span className="material-symbols-outlined">remove</span>
             </button>
-            <span className="text-lg font-bold w-6 text-center">{quantity}</span>
+            <span className="text-lg font-bold w-6 text-center text-text-primary">{quantity}</span>
             <button
               onClick={() => setQuantity(q => q + 1)}
-              className="flex items-center justify-center w-10 h-10 transition-all bg-[#00d26a]/10 rounded-xl text-[#006d34] hover:bg-[#00d26a]/20 active:scale-90"
+              className="flex items-center justify-center w-10 h-10 transition-all bg-primary-light rounded-xl text-primary hover:bg-primary/20 active:scale-90"
             >
               <span className="material-symbols-outlined">add</span>
             </button>
@@ -161,14 +161,14 @@ export default function ProductDetailsPage() {
               onClick={() => toggleExtra(sauce.id)}
               className={`w-full flex items-center justify-between p-3 rounded-2xl transition-all border ${
                 selectedExtras[sauce.id]
-                  ? 'bg-[#006d34]/5 border-[#006d34]/20'
-                  : 'bg-white border-[#bbcbba]/10'
+                  ? 'bg-primary/5 border-primary/20'
+                  : 'bg-white border-border/10'
               }`}
             >
-              <span className="text-sm font-medium">{sauce.name}</span>
+              <span className="text-sm font-medium text-text-primary">{sauce.name}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-[#5f5e5e]">{sauce.price.toFixed(2)} ₪</span>
-                <span className={`material-symbols-outlined text-lg ${selectedExtras[sauce.id] ? 'text-[#006d34]' : 'text-[#bbcbba]'}`}>
+                <span className="text-xs text-text-secondary">{sauce.price.toFixed(2)} ₪</span>
+                <span className={`material-symbols-outlined text-lg ${selectedExtras[sauce.id] ? 'text-primary' : 'text-border'}`}>
                   {selectedExtras[sauce.id] ? 'check_circle' : 'add_circle'}
                 </span>
               </div>
@@ -184,14 +184,14 @@ export default function ProductDetailsPage() {
               onClick={() => toggleExtra(drink.id)}
               className={`w-full flex items-center justify-between p-3 rounded-2xl transition-all border ${
                 selectedExtras[drink.id]
-                  ? 'bg-[#006d34]/5 border-[#006d34]/20'
-                  : 'bg-white border-[#bbcbba]/10'
+                  ? 'bg-primary/5 border-primary/20'
+                  : 'bg-white border-border/10'
               }`}
             >
-              <span className="text-sm font-medium">{drink.name}</span>
+              <span className="text-sm font-medium text-text-primary">{drink.name}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-[#5f5e5e]">{drink.price.toFixed(2)} ₪</span>
-                <span className={`material-symbols-outlined text-lg ${selectedExtras[drink.id] ? 'text-[#006d34]' : 'text-[#bbcbba]'}`}>
+                <span className="text-xs text-text-secondary">{drink.price.toFixed(2)} ₪</span>
+                <span className={`material-symbols-outlined text-lg ${selectedExtras[drink.id] ? 'text-primary' : 'text-border'}`}>
                   {selectedExtras[drink.id] ? 'check_circle' : 'add_circle'}
                 </span>
               </div>
@@ -207,14 +207,14 @@ export default function ProductDetailsPage() {
               onClick={() => toggleExtra(comp.id)}
               className={`w-full flex items-center justify-between p-3 rounded-2xl transition-all border ${
                 selectedExtras[comp.id]
-                  ? 'bg-[#006d34]/5 border-[#006d34]/20'
-                  : 'bg-white border-[#bbcbba]/10'
+                  ? 'bg-primary/5 border-primary/20'
+                  : 'bg-white border-border/10'
               }`}
             >
-              <span className="text-sm font-medium">{comp.name}</span>
+              <span className="text-sm font-medium text-text-primary">{comp.name}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-[#5f5e5e]">{comp.price.toFixed(2)} ₪</span>
-                <span className={`material-symbols-outlined text-lg ${selectedExtras[comp.id] ? 'text-[#006d34]' : 'text-[#bbcbba]'}`}>
+                <span className="text-xs text-text-secondary">{comp.price.toFixed(2)} ₪</span>
+                <span className={`material-symbols-outlined text-lg ${selectedExtras[comp.id] ? 'text-primary' : 'text-border'}`}>
                   {selectedExtras[comp.id] ? 'check_circle' : 'add_circle'}
                 </span>
               </div>
@@ -223,15 +223,15 @@ export default function ProductDetailsPage() {
         </div>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/80 backdrop-blur-md border-t border-[#bbcbba]/20">
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/80 backdrop-blur-md border-t border-border">
         <div className="max-w-lg mx-auto">
           <div className="flex items-center justify-between mb-3 px-1">
-            <span className="text-sm text-[#5f5e5e]">المجموع الكلي</span>
-            <span className="text-xl font-bold text-[#006d34]">{totalPrice.toFixed(2)} ₪</span>
+            <span className="text-sm text-text-secondary">المجموع الكلي</span>
+            <span className="text-xl font-bold text-primary">{totalPrice.toFixed(2)} ₪</span>
           </div>
           <button
             onClick={addToCart}
-            className="w-full h-14 bg-[#006d34] text-white rounded-2xl font-bold text-sm shadow-lg shadow-[#006d34]/20 hover:bg-[#005226] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            className="w-full h-14 bg-primary text-white rounded-2xl font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark active:scale-[0.98] transition-all flex items-center justify-center gap-2"
           >
             <span className="material-symbols-outlined">shopping_cart</span>
             أضف إلى السلة
@@ -241,7 +241,7 @@ export default function ProductDetailsPage() {
 
       {showSnackbar && (
         <div className="fixed top-24 left-0 right-0 z-[60] flex justify-center animate-entry">
-          <div className="bg-[#006d34] text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-2 text-sm font-bold">
+          <div className="bg-primary text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-2 text-sm font-bold">
             <span className="material-symbols-outlined text-lg">check_circle</span>
             تمت الإضافة إلى السلة
           </div>

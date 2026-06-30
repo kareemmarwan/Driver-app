@@ -1,10 +1,7 @@
-'use client';
-import { Component, ReactNode } from 'react';
+"use client";
+import { Component, ErrorInfo, ReactNode } from "react";
 
-interface Props {
-  children: ReactNode;
-  fallback?: ReactNode;
-}
+interface Props { children: ReactNode; }
 
 interface State {
   hasError: boolean;
@@ -21,27 +18,27 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('ErrorBoundary caught:', error, errorInfo);
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("ErrorBoundary caught:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) return this.props.fallback;
       return (
-        <div dir="rtl" className="flex flex-col items-center justify-center min-h-screen p-4 bg-[#F8FAFC] text-center">
-          <span className="material-symbols-outlined text-6xl text-red-400 mb-4">error_outline</span>
-          <h1 className="text-xl font-bold text-[#151e16] mb-2">عذراً، حدث خطأ غير متوقع</h1>
-          <p className="text-[#5f5e5e] mb-4">نعمل على حل المشكلة، يرجى المحاولة مرة أخرى</p>
+        <div dir="rtl" className="flex flex-col items-center justify-center min-h-screen p-4 bg-background text-center">
+          <span className="material-symbols-outlined text-6xl text-error mb-4">error</span>
+          <h1 className="text-xl font-bold text-text-primary mb-2">عذراً، حدث خطأ غير متوقع</h1>
+          <p className="text-text-secondary mb-4">نعمل على حل المشكلة، يرجى المحاولة مرة أخرى</p>
           <button
-            onClick={() => { this.setState({ hasError: false }); window.location.reload(); }}
-            className="px-6 py-2 bg-[#006d34] text-white rounded-xl hover:bg-[#005226] transition-colors"
+            onClick={() => this.setState({ hasError: false })}
+            className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-primary-dark transition-colors"
           >
-            إعادة تحميل
+            إعادة المحاولة
           </button>
         </div>
       );
     }
+
     return this.props.children;
   }
 }

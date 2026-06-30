@@ -1,97 +1,79 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+
+type Tab = {
+  id: string;
+  label: string;
+  icon: string;
+  activeIcon: string;
+  href: string;
+};
+
+const TABS: Tab[] = [
+  { id: "home", label: "الرئيسية", icon: "home", activeIcon: "home", href: "/" },
+  { id: "restaurants", label: "المطاعم", icon: "restaurant", activeIcon: "restaurant", href: "/Restaurants" },
+  { id: "orders", label: "طلباتي", icon: "receipt_long", activeIcon: "receipt_long", href: "/orders" },
+  { id: "profile", label: "حسابي", icon: "person", activeIcon: "person", href: "/ProfilePage" },
+];
 
 export default function AdvancedTabBar() {
   const pathname = usePathname();
+  const router = useRouter();
 
-  const tabs = [
-    { href: "/", label: "الرئيسية", icon: "grid_view" },
-    { href: "/orders", label: "الطلبات", icon: "local_shipping" },
-    { isPlaceholder: true },
-    { href: "/history", label: "السجل", icon: "history" },
-    { href: "/ProfilePage", label: "الحساب", icon: "person" },
-  ];
-
-  const getIndicatorPosition = () => {
-    switch (pathname) {
-      case "/":
-        return "2%";
-      case "/orders":
-        return "21.5%";
-      case "/history":
-        return "60.5%";
-      case "/ProfilePage":
-        return "80%";
-      default:
-        return "2%";
-    }
+  const getActiveTab = (): string => {
+    if (pathname === "/" || pathname.startsWith("/HomeScreen")) return "home";
+    if (pathname.startsWith("/Restaurants")) return "restaurants";
+    if (pathname.startsWith("/orders")) return "orders";
+    if (pathname.startsWith("/ProfilePage")) return "profile";
+    return "home";
   };
 
+  const activeTab = getActiveTab();
+
+  const navigate = (href: string) => {
+    router.push(href);
+  };
+
+  const getTabIndex = (tabId: string) => TABS.findIndex(t => t.id === tabId);
+  const activeIndex = getTabIndex(activeTab);
+
   return (
-    <div dir="rtl">
-      <div className="fixed left-0 right-0 z-50 w-full max-w-md px-4 mx-auto bottom-6">
-        <div className="relative bg-white/90 backdrop-blur-xl border border-[#bbcbba]/30 shadow-[0px_12px_40px_rgba(0,109,52,0.08)] rounded-[24px] px-2 py-2 flex items-center justify-around">
-
-          {/* الخلفية المتحركة للمؤشر */}
-          <div
-            className="absolute top-2 bottom-2 bg-[#00d26a]/15 rounded-[18px] transition-all duration-300 ease-out z-0"
-            style={{
-              width: "18%",
-              right: getIndicatorPosition(), // تعتمد على الـ right لأن الاتجاه rtl
-            }}
-          />
-
-          {tabs.map((tab, idx) => {
-            if ("isPlaceholder" in tab) {
-              return <div key={idx} className="w-[18%]" />;
-            }
-
-            const isActive = pathname === tab.href;
-
-            return (
-              <Link
-                key={tab.href}
-                href={tab.href}
-                className="w-[18%] flex flex-col items-center justify-center py-2 rounded-[18px] relative z-10 transition-transform active:scale-90"
-              >
-                <span
-                  className={`material-symbols-outlined text-[24px] transition-all duration-300 ${
-                    isActive ? "text-[#006d34] scale-110" : "text-[#7f8e7e]"
-                  }`}
-                  style={{
-                    fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0",
-                  }}
-                >
-                  {tab.icon}
-                </span>
-
-                <span
-                  className={`text-[11px] font-medium transition-all duration-300 mt-0.5 ${
-                    isActive ? "text-[#006d34]" : "text-[#7f8e7e]"
-                  }`}
-                >
-                  {tab.label}
-                </span>
-              </Link>
-            );
-          })}
-
-          {/* الزر الأوسط الطائر المتنقل لإنشاء طلب */}
-          <div className="absolute z-20 -translate-x-1/2 -top-6 left-1/2">
-            <Link
-              href="/Cart"
-              className="w-14 h-14 bg-gradient-to-tr from-[#006d34] to-[#00d26a] text-white rounded-full flex items-center justify-center shadow-[0px_8px_20px_rgba(0,210,106,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+    <div className="relative bg-white/90 backdrop-blur-xl border border-border shadow-lg rounded-[24px] px-2 py-2 flex items-center justify-around mx-4 mb-2">
+      <div
+        className="absolute top-2 bottom-2 bg-primary-light rounded-[18px] transition-all duration-300 ease-out z-0"
+        style={{
+          width: `${100 / TABS.length}%`,
+          transform: `translateX(${activeIndex * 100}%)`,
+        }}
+      />
+      {TABS.map((tab) => {
+        const isActive = activeTab === tab.id;
+        return (
+          <button
+            key={tab.id}
+            onClick={() => navigate(tab.href)}
+            className="flex flex-col items-center justify-center py-1 px-3 z-10 relative transition-all duration-200 active:scale-90"
+          >
+            <span
+              className={`material-symbols-outlined text-[24px] transition-all duration-300 ${
+                isActive ? "text-primary scale-110" : "text-tab-inactive"
+              }`}
+              style={{ fontVariationSettings: `'FILL' ${isActive ? 1 : 0}` }}
             >
-              <span className="material-symbols-outlined text-[30px]">
-                add
-              </span>
-            </Link>
-          </div>
-
-        </div>
-      </div>
+              {tab.icon}
+            </span>
+            <span
+              className={`text-[11px] font-medium transition-all duration-300 mt-0.5 ${
+                isActive ? "text-primary" : "text-tab-inactive"
+              }`}
+            >
+              {tab.label}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }

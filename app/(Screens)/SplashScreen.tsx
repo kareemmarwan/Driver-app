@@ -8,7 +8,6 @@ export default function SplashScreen({ onReady }: { onReady?: () => void }) {
   const glowRef1 = useRef<HTMLDivElement>(null);
   const glowRef2 = useRef<HTMLDivElement>(null);
 
-  // 1. محاكاة شريط التحميل (Progress Bar)
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
@@ -32,7 +31,6 @@ export default function SplashScreen({ onReady }: { onReady?: () => void }) {
       });
     };
 
-    // بدء المحاكاة بعد 400ms من تحميل المكون
     const startTimeout = setTimeout(simulateProgress, 400);
 
     return () => {
@@ -41,7 +39,6 @@ export default function SplashScreen({ onReady }: { onReady?: () => void }) {
     };
   }, [onReady]);
 
-  // 2. حركة توهج الخلفية مع الماوس (Parallax Effect)
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX / window.innerWidth;
@@ -60,13 +57,12 @@ export default function SplashScreen({ onReady }: { onReady?: () => void }) {
   }, []);
 
   return (
-    <main className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-surface text-on-surface">
+    <main className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-background text-text-primary">
 
-      {/* عناصر الخلفية التفاعلية */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <div
           ref={glowRef1}
-          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-container/10 blur-[120px] rounded-full transition-transform duration-300 ease-out"
+          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-light blur-[120px] rounded-full transition-transform duration-300 ease-out"
         ></div>
         <div
           ref={glowRef2}
@@ -74,53 +70,45 @@ export default function SplashScreen({ onReady }: { onReady?: () => void }) {
         ></div>
       </div>
 
-      {/* المحتوى الرئيسي */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-xs text-center px-margin-mobile">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-xs text-center px-6">
 
-        {/* شعار البراند */}
-        <div className="mb-xl animate-logo animate-entry">
+        <div className="mb-8 animate-logo animate-entry">
           <div className="relative group">
-            <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-primary/20 to-primary-container/30 flex items-center justify-center drop-shadow-xl">
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-primary-light flex items-center justify-center drop-shadow-xl">
               <span className="material-symbols-outlined text-[64px] md:text-[80px] text-primary">local_shipping</span>
             </div>
-            {/* تأثير التوهج خلف الشعار */}
-            <div className="absolute inset-0 transition-all duration-700 scale-125 rounded-full bg-primary-container/20 blur-2xl -z-10 group-hover:bg-primary-container/30"></div>
+            <div className="absolute inset-0 transition-all duration-700 scale-125 rounded-full bg-primary/20 blur-2xl -z-10 group-hover:bg-primary/30"></div>
           </div>
         </div>
 
-        {/* اسم البراند والنصوص */}
         <div className="animate-entry [animation-delay:200ms] opacity-0 fill-mode-forwards">
-          <h1 className="text-[24px] leading-[32px] font-bold md:text-[32px] md:leading-[40px] text-on-surface tracking-tight mb-xs">
+          <h1 className="text-[24px] leading-[32px] font-bold md:text-[32px] md:leading-[40px] text-text-primary tracking-tight mb-2">
             Gaza <span className="text-primary">Express</span>
           </h1>
-          <p className="text-[14px] leading-[20px] font-normal text-on-surface-variant tracking-wide opacity-80 uppercase">
+          <p className="text-[14px] leading-[20px] font-normal text-text-secondary tracking-wide opacity-80 uppercase">
             Agile • Local • Indispensable
           </p>
         </div>
 
-        {/* مؤشر التحميل */}
-        <div className="mt-2xl w-full animate-entry [animation-delay:400ms] opacity-0 fill-mode-forwards">
-          <div className="relative w-full h-1 overflow-hidden rounded-full bg-surface-container mb-sm">
-            {/* شريط التقدم الفعلي */}
+        <div className="mt-8 w-full animate-entry [animation-delay:400ms] opacity-0 fill-mode-forwards">
+          <div className="relative w-full h-1 overflow-hidden rounded-full bg-surface mb-2">
             <div
-              className="h-full bg-primary-container transition-all duration-300 ease-out shadow-[0_0_12px_rgba(0,210,106,0.5)]"
+              className="h-full bg-primary transition-all duration-300 ease-out shadow-[0_0_12px_rgba(239,43,45,0.5)]"
               style={{ width: `${progress}%` }}
             ></div>
-            {/* تأثير الشيمر فوق شريط التحميل */}
             <div className="absolute inset-0 loading-shimmer"></div>
           </div>
 
           <div className="flex items-center justify-between px-1">
-            <span className="text-[12px] leading-[16px] font-medium text-secondary animate-pulse">
+            <span className="text-[12px] leading-[16px] font-medium text-text-secondary animate-pulse">
               {isReady ? "Ready" : "Initializing..."}
             </span>
-            <span className={`text-[12px] leading-[16px] font-bold ${isReady ? 'text-primary-container' : 'text-primary'}`}>
+            <span className={`text-[12px] leading-[16px] font-bold ${isReady ? 'text-primary' : 'text-primary'}`}>
               {isReady ? "Ready" : `${Math.floor(progress)}%`}
             </span>
           </div>
         </div>
       </div>
-
 
     </main>
   );

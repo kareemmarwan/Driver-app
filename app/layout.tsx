@@ -43,9 +43,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1"
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#006d34" />
+        <meta name="theme-color" content="#EF2B2D" />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#F8FAFC]" style={{ fontFamily: "'Cairo', system-ui, -apple-system, sans-serif" }} suppressHydrationWarning={true}>
+      <body className="min-h-screen flex flex-col bg-background" style={{ fontFamily: "'Cairo', system-ui, -apple-system, sans-serif" }} suppressHydrationWarning={true}>
 
         <PWARegister />
         <ThemeProvider>
