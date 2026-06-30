@@ -46,7 +46,7 @@ export default function LocationPicker() {
         <button onClick={() => router.back()} className="flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-full bg-surface hover:bg-primary/5 active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
-        <h1 className="text-base font-bold text-primary">تحديد موقع التسليم</h1>
+        <h1 className="text-base font-bold text-primary">تحديد sssموقع التسليم</h1>
         <div className="flex items-center justify-center w-10">
           <span className="font-mono text-sm font-bold text-primary">2/3</span>
         </div>
