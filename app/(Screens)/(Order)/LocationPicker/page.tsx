@@ -42,8 +42,8 @@ export default function LocationPicker() {
 
   return (
     <div className="relative w-full h-[calc(100vh-80px)] bg-background text-text-primary overflow-hidden font-cairo pb-24" dir="rtl">
-      <header className="absolute top-0 left-0 right-0 w-full z-40 bg-white shadow-sm flex justify-between items-center px-4 h-16 border-b border-border/50">
-        <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 duration-150 text-primary">
+      <header className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between w-full h-16 px-4 bg-white border-b shadow-sm border-border/50">
+        <button onClick={() => router.back()} className="flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-full bg-surface hover:bg-primary/5 active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
         <h1 className="text-base font-bold text-primary">تحديد موقع التسليم</h1>
@@ -87,7 +87,7 @@ export default function LocationPicker() {
         }}
         className="absolute top-[42%] left-4 z-30 w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg text-text-primary hover:bg-surface transition-all active:scale-90 border border-border/50"
       >
-        <span className="material-symbols-outlined text-primary text-xl">my_location</span>
+        <span className="text-xl material-symbols-outlined text-primary">my_location</span>
       </button>
 
       <div
@@ -99,19 +99,19 @@ export default function LocationPicker() {
           className="flex justify-center w-full py-3 cursor-pointer touch-none"
           onClick={() => setIsSheetExpanded(!isSheetExpanded)}
         >
-          <div className="w-12 h-1 bg-border rounded-full"></div>
+          <div className="w-12 h-1 rounded-full bg-border"></div>
         </div>
 
         <div className="flex-1 px-4 pb-2 space-y-4 overflow-y-auto no-scrollbar">
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <div className="relative">
-              <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary text-xl">search</span>
+              <span className="absolute text-xl -translate-y-1/2 material-symbols-outlined right-4 top-1/2 text-text-secondary">search</span>
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSheetExpanded(true)}
-                className="w-full h-12 pr-11 pl-4 text-xs bg-surface border border-border/50 rounded-xl focus:border-primary focus:ring-0 text-text-primary"
+                className="w-full h-12 pl-4 text-xs border pr-11 bg-surface border-border/50 rounded-xl focus:border-primary focus:ring-0 text-text-primary"
                 placeholder="ابحث عن منطقة للتسليم..."
               />
             </div>
@@ -138,8 +138,8 @@ export default function LocationPicker() {
                 onClick={() => setPosition({ lat: 31.5088, lng: 34.4487 })}
                 className="flex items-center gap-2 p-2.5 bg-white border border-border/50 rounded-xl hover:bg-surface text-right"
               >
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-primary text-lg">home</span>
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 shrink-0">
+                  <span className="text-lg material-symbols-outlined text-primary">home</span>
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-text-primary">المنزل</p>
@@ -152,7 +152,7 @@ export default function LocationPicker() {
                 className="flex items-center gap-2 p-2.5 bg-white border border-border/50 rounded-xl hover:bg-surface text-right"
               >
                 <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-surface shrink-0">
-                  <span className="material-symbols-outlined text-text-secondary text-lg">work</span>
+                  <span className="text-lg material-symbols-outlined text-text-secondary">work</span>
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-text-primary">المكتب</p>
@@ -166,7 +166,7 @@ export default function LocationPicker() {
         <div className="p-3 bg-white border-t border-border/50">
           <Link
             href="/Cart"
-            className="w-full h-12 bg-primary text-white text-sm font-bold rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 active:scale-98 transition-all"
+            className="flex items-center justify-center w-full h-12 text-sm font-bold text-white transition-all shadow-lg bg-primary rounded-xl shadow-primary/20 active:scale-98"
           >
             تأكيد موقع التسليم والمتابعة
           </Link>

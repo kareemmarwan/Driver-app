@@ -41,8 +41,8 @@ export default function PickupLocationPage() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden antialiased bg-background text-text-primary" dir="rtl">
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full max-w-md px-4 py-2 mx-auto shadow-sm bg-white">
-        <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 text-primary">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full max-w-md px-4 py-2 mx-auto bg-white shadow-sm">
+        <button onClick={() => router.back()} className="flex items-center justify-center w-10 h-10 transition-colors rounded-full bg-surface hover:bg-primary/5 active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
         <h1 className="text-base font-bold text-primary">طلب توصيل جديد</h1>
@@ -180,7 +180,7 @@ export default function PickupLocationPage() {
           <div className="p-4 bg-white border-t border-border/50 pb-safe">
             <button
               onClick={handleConfirmPickup}
-              className="flex items-center justify-center w-full text-sm font-bold transition-transform shadow-md h-14 bg-primary text-white rounded-xl shadow-primary/10 active:scale-95"
+              className="flex items-center justify-center w-full text-sm font-bold text-white transition-transform shadow-md h-14 bg-primary rounded-xl shadow-primary/10 active:scale-95"
             >
               تأكيد موقع الاستلام
             </button>
