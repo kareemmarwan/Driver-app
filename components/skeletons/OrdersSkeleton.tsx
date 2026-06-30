@@ -2,7 +2,7 @@ export default function OrdersSkeleton() {
   return (
     <div className="space-y-4">
       {[1,2,3].map(i => (
-        <div key={i} className="bg-white rounded-2xl p-4 border border-border">
+        <div key={i} className="bg-white rounded-2xl p-4 border border-border/50">
           <div className="flex gap-3">
             <div className="skeleton w-16 h-16 rounded-xl shrink-0" />
             <div className="flex-1 space-y-2">

@@ -18,8 +18,8 @@ export default function SettingsPage() {
         </div>
 
         <div className="space-y-4">
-          <div className="bg-white rounded-2xl border border-border overflow-hidden">
-            <div className="px-4 pt-4 pb-2 border-b bg-surface border-border">
+          <div className="bg-white rounded-2xl border border-border/50 overflow-hidden">
+            <div className="px-4 pt-4 pb-2 border-b bg-surface border-border/50">
               <span className="text-xs font-black tracking-wider uppercase text-text-secondary">عام</span>
             </div>
             <div className="divide-y divide-border">
@@ -44,7 +44,7 @@ export default function SettingsPage() {
                 <select
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="text-sm font-bold text-text-secondary bg-surface px-2 py-1 rounded-md border border-border"
+                  className="text-sm font-bold text-text-secondary bg-surface px-2 py-1 rounded-md border border-border/50"
                 >
                   <option value="ar">العربية</option>
                   <option value="en">English</option>
@@ -56,7 +56,7 @@ export default function SettingsPage() {
                   <span className="text-xl material-symbols-outlined text-text-secondary">contrast</span>
                   <span className="text-sm font-bold text-text-primary">المظهر</span>
                 </div>
-                <select className="text-sm font-bold text-text-secondary bg-surface px-2 py-1 rounded-md border border-border">
+                <select className="text-sm font-bold text-text-secondary bg-surface px-2 py-1 rounded-md border border-border/50">
                   <option>فاتح</option>
                   <option>داكن</option>
                   <option>النظام</option>
@@ -65,8 +65,8 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-border overflow-hidden">
-            <div className="px-4 pt-4 pb-2 border-b bg-surface border-border">
+          <div className="bg-white rounded-2xl border border-border/50 overflow-hidden">
+            <div className="px-4 pt-4 pb-2 border-b bg-surface border-border/50">
               <span className="text-xs font-black tracking-wider uppercase text-text-secondary">حول</span>
             </div>
             <div className="divide-y divide-border">

@@ -40,7 +40,7 @@ export default function HistoryPage() {
           HISTORY_ORDERS.map((order) => (
             <div
               key={order.id}
-              className="bg-white rounded-2xl p-4 shadow-sm border border-border active:scale-[0.98] transition-transform cursor-pointer"
+              className="bg-white rounded-2xl p-4 shadow-sm border border-border/50 active:scale-[0.98] transition-transform cursor-pointer"
             >
               <div className="flex gap-3">
                 <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface shrink-0">
@@ -68,7 +68,7 @@ export default function HistoryPage() {
                 </div>
               </div>
 
-              <div className="flex gap-2 mt-3 pt-3 border-t border-border">
+              <div className="flex gap-2 mt-3 pt-3 border-t border-border/50">
                 <button className="flex-1 py-2.5 bg-primary text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 active:scale-95 transition-transform">
                   <span className="material-symbols-outlined text-[16px]">replay</span>
                   إعادة الطلب

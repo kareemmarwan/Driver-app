@@ -46,7 +46,7 @@ export default function LoginPage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="059xxxxxxx"
-              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:border-primary transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-border/50 bg-white text-text-primary focus:outline-none focus:border-primary transition-colors"
               required
             />
           </div>
@@ -58,7 +58,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:border-primary transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-border/50 bg-white text-text-primary focus:outline-none focus:border-primary transition-colors"
               required
             />
           </div>

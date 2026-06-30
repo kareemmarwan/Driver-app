@@ -63,7 +63,7 @@ export default function TrackingPage() {
 
         <div className="relative z-20 px-4 -mt-12 space-y-4">
 
-          <div className="bg-white rounded-xl shadow-md p-5 border border-border">
+          <div className="bg-white rounded-xl shadow-md p-5 border border-border/50">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <p className="text-xs font-bold text-primary mb-1 uppercase tracking-wider">الحالة الحالية</p>
@@ -112,7 +112,7 @@ export default function TrackingPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between border border-border">
+          <div className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between border border-border/50">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary flex-shrink-0">
                 <img
@@ -142,7 +142,7 @@ export default function TrackingPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-4 border border-border">
+          <div className="bg-white rounded-xl p-4 border border-border/50">
             <div className="flex items-center gap-3">
               <div className="text-text-secondary flex items-center justify-center">
                 <span className="material-symbols-outlined">location_on</span>
@@ -154,7 +154,7 @@ export default function TrackingPage() {
             </div>
           </div>
 
-          <button className="w-full flex items-center justify-center gap-2 font-bold text-sm text-text-secondary py-3.5 hover:bg-surface transition-colors rounded-xl border border-dashed border-border">
+          <button className="w-full flex items-center justify-center gap-2 font-bold text-sm text-text-secondary py-3.5 hover:bg-surface transition-colors rounded-xl border border-dashed border-border/50">
             <span className="material-symbols-outlined text-[20px]">support_agent</span>
             تواصل مع الدعم الفني
           </button>
@@ -168,7 +168,7 @@ export default function TrackingPage() {
         </button>
       </div>
 
-      <nav className="hidden md:flex fixed bottom-0 left-0 w-full bg-white h-20 border-t border-border items-center justify-around z-50">
+      <nav className="hidden md:flex fixed bottom-0 left-0 w-full bg-white h-20 border-t border-border/50 items-center justify-around z-50">
         <button className="flex flex-col items-center justify-center text-text-secondary hover:text-primary transition-colors">
           <span className="material-symbols-outlined">home</span>
           <span className="mt-1 text-xs">الرئيسية</span>

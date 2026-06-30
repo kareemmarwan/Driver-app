@@ -87,7 +87,7 @@ export default function ProfilePage() {
 
           <div className="space-y-6 lg:col-span-5">
 
-            <section className="bg-white p-6 rounded-3xl border border-border flex items-center gap-4 relative overflow-hidden group">
+            <section className="bg-white p-6 rounded-3xl border border-border/50 flex items-center gap-4 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 -mt-10 -mr-10 transition-all rounded-full bg-primary/5 blur-xl group-hover:bg-primary/10" />
               <div className="relative w-20 h-20 overflow-hidden rounded-full shadow-md ring-4 ring-primary/10 shrink-0">
                 <img
@@ -103,24 +103,24 @@ export default function ProfilePage() {
                   عضو فضي منذ ٢٠٢٣
                 </span>
               </div>
-              <button onClick={() => router.push('/edit-profile')} className="absolute flex items-center justify-center transition-all border border-transparent top-4 left-4 w-9 h-9 text-text-secondary hover:text-text-primary hover:bg-surface hover:border-border rounded-xl active:scale-95">
+              <button onClick={() => router.push('/edit-profile')} className="absolute flex items-center justify-center transition-all border border-transparent top-4 left-4 w-9 h-9 text-text-secondary hover:text-text-primary hover:bg-surface hover:border-border/50 rounded-xl active:scale-95">
                 <span className="text-xl material-symbols-outlined">edit</span>
               </button>
               <DarkModeToggle />
             </section>
 
             <section className="grid grid-cols-3 gap-3">
-              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border transition-all hover:translate-y-[-2px] hover:shadow-md">
+              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border/50 transition-all hover:translate-y-[-2px] hover:shadow-md">
                 <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-surface text-text-secondary"><span className="text-xl material-symbols-outlined">receipt_long</span></div>
                 <span className="text-lg font-black text-text-primary">٤٧</span>
                 <span className="text-[10px] font-medium text-text-secondary">إجمالي الطلبات</span>
               </div>
-              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border transition-all hover:translate-y-[-2px] hover:shadow-md">
+              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border/50 transition-all hover:translate-y-[-2px] hover:shadow-md">
                 <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary-light text-primary"><span className="text-xl material-symbols-outlined">check_circle</span></div>
                 <span className="text-lg font-black text-text-primary">٤٢</span>
                 <span className="text-[10px] font-medium text-text-secondary">مكتملة</span>
               </div>
-              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border transition-all hover:translate-y-[-2px] hover:shadow-md">
+              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border/50 transition-all hover:translate-y-[-2px] hover:shadow-md">
                 <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary-light text-primary"><span className="text-xl material-symbols-outlined">payments</span></div>
                 <span className="text-lg font-black text-text-primary">١,٢٥٠</span>
                 <span className="text-[10px] font-medium text-text-secondary">مصروفات</span>
@@ -134,7 +134,7 @@ export default function ProfilePage() {
                 <span className="text-lg font-black text-text-primary">١</span>
                 <span className="text-[10px] font-bold text-primary">طلب نشط</span>
               </div>
-              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border transition-all hover:translate-y-[-2px] hover:shadow-md">
+              <div className="bg-white p-3.5 rounded-2xl flex flex-col items-center justify-center text-center gap-1.5 border border-border/50 transition-all hover:translate-y-[-2px] hover:shadow-md">
                 <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary-light text-primary"><span className="text-xl material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span></div>
                 <span className="text-lg font-black text-text-primary">١,٢٠٠</span>
                 <span className="text-[10px] font-medium text-text-secondary">نقاط المكافآت</span>
@@ -149,7 +149,7 @@ export default function ProfilePage() {
                 </button>
               </div>
               <div className="flex gap-3 pb-2 overflow-x-auto scrollbar-none snap-x">
-                <div className="min-w-[260px] max-w-[280px] bg-white p-4 rounded-2xl border border-border flex gap-3 snap-start transition-all hover:border-border">
+                <div className="min-w-[260px] max-w-[280px] bg-white p-4 rounded-2xl border border-border/50 flex gap-3 snap-start transition-all hover:border-border/50">
                   <div className="flex items-center justify-center w-10 h-10 bg-surface text-text-secondary rounded-xl shrink-0">
                     <span className="text-lg material-symbols-outlined">home</span>
                   </div>
@@ -158,7 +158,7 @@ export default function ProfilePage() {
                     <span className="text-xs text-text-secondary line-clamp-1 mt-0.5">غزة، الرمال، شارع الشهداء، عمارة الأمل</span>
                   </div>
                 </div>
-                <div className="min-w-[260px] max-w-[280px] bg-white p-4 rounded-2xl border border-border flex gap-3 snap-start transition-all hover:border-border">
+                <div className="min-w-[260px] max-w-[280px] bg-white p-4 rounded-2xl border border-border/50 flex gap-3 snap-start transition-all hover:border-border/50">
                   <div className="flex items-center justify-center w-10 h-10 bg-surface text-text-secondary rounded-xl shrink-0">
                     <span className="text-lg material-symbols-outlined">work</span>
                   </div>
@@ -174,8 +174,8 @@ export default function ProfilePage() {
           <div className="space-y-4 lg:col-span-7">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {MENU_GROUPS.map((group, gIdx) => (
-                <div key={gIdx} className="bg-white rounded-2xl border border-border overflow-hidden h-fit">
-                  <div className="px-4 pt-4 pb-2 border-b bg-surface border-border">
+                <div key={gIdx} className="bg-white rounded-2xl border border-border/50 overflow-hidden h-fit">
+                  <div className="px-4 pt-4 pb-2 border-b bg-surface border-border/50">
                     <span className="text-xs font-black tracking-wider uppercase text-text-secondary">{group.title}</span>
                   </div>
                   <div className="divide-y divide-border">
@@ -214,8 +214,8 @@ export default function ProfilePage() {
             </div>
 
             {wishlistItems.length > 0 && (
-              <div className="bg-white rounded-2xl border border-border overflow-hidden">
-                <div className="px-4 pt-4 pb-2 border-b bg-surface border-border flex items-center justify-between">
+              <div className="bg-white rounded-2xl border border-border/50 overflow-hidden">
+                <div className="px-4 pt-4 pb-2 border-b bg-surface border-border/50 flex items-center justify-between">
                   <span className="text-xs font-black tracking-wider uppercase text-text-secondary">المفضلة</span>
                   <span className="text-xs text-text-secondary">{wishlistItems.length} عنصر</span>
                 </div>

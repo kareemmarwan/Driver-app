@@ -41,7 +41,7 @@ export default function Cart() {
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-background pb-32" dir="rtl">
-        <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border">
+        <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border/50">
           <button onClick={() => router.back()} className="p-2 transition-colors transition-transform rounded-full hover:bg-primary/5 active:scale-95 text-text-primary">
             <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
           </button>
@@ -64,7 +64,7 @@ export default function Cart() {
   return (
     <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary" dir="rtl">
 
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 flex justify-between items-center px-4 h-16 bg-white shadow-sm border-b border-border/50">
         <div className="flex items-center gap-4">
           <button onClick={() => router.back()} className="p-2 transition-colors transition-transform rounded-full hover:bg-primary/5 active:scale-95 text-text-primary">
             <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
@@ -85,7 +85,7 @@ export default function Cart() {
           </div>
           <div className="space-y-3">
             {cartItems.map((item) => (
-              <div key={item.id} className="bg-white p-3 rounded-2xl shadow-sm border border-border flex items-center gap-4">
+              <div key={item.id} className="bg-white p-3 rounded-2xl shadow-sm border border-border/50 flex items-center gap-4">
                 <div className="w-20 h-20 overflow-hidden rounded-xl bg-surface border border-border/10 shrink-0">
                   <img className="object-cover w-full h-full" src={item.image} alt={item.name} />
                 </div>
@@ -120,7 +120,7 @@ export default function Cart() {
 
         <section>
           <h2 className="mb-3 text-sm font-bold text-text-primary">عنوان التوصيل</h2>
-          <div className="bg-white rounded-2xl shadow-sm border border-border overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-border/50 overflow-hidden">
             <div className="relative w-full h-32 bg-surface">
               <div
                 className="w-full h-full bg-center bg-cover grayscale opacity-80"

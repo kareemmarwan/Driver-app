@@ -30,14 +30,14 @@ export default function HomeScreen() {
   return (
     <div className="bg-background min-h-screen text-text-primary antialiased pb-32" dir="rtl">
       <header
-        className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-background shadow-sm transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-white shadow-sm transform transition-transform duration-300 ease-in-out ${
           showHeader ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <div className="flex items-center gap-2">
           <Link
             href="/ProfilePage"
-            className="w-10 h-10 rounded-full overflow-hidden bg-surface border border-border active:scale-95 transition-transform block"
+            className="w-10 h-10 rounded-full overflow-hidden bg-surface border border-border/50 active:scale-95 transition-transform block"
           >
             <Image
               className="object-cover w-full h-full"
@@ -90,7 +90,7 @@ export default function HomeScreen() {
         </section>
 
         <section className="text-right">
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-border">
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-border/50">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary font-fill">local_shipping</span>
@@ -115,7 +115,7 @@ export default function HomeScreen() {
               <Link
                 key={service.id}
                 href={service.link}
-                className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-sm border border-border active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-sm border border-border/50 active:scale-95 transition-transform"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center">
                   <span className="material-symbols-outlined text-primary">{service.icon}</span>
@@ -132,7 +132,7 @@ export default function HomeScreen() {
             <button className="text-primary text-[14px] font-bold hover:underline">عرض الكل</button>
           </div>
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-border active:scale-[0.98] transition-transform cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-border/50 active:scale-[0.98] transition-transform cursor-pointer">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-secondary">
                   <span className="material-symbols-outlined">history</span>
@@ -145,7 +145,7 @@ export default function HomeScreen() {
               <span className="material-symbols-outlined text-disabled rotate-180">chevron_right</span>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-border active:scale-[0.98] transition-transform cursor-pointer">
+            <div className="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-border/50 active:scale-[0.98] transition-transform cursor-pointer">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-secondary">
                   <span className="material-symbols-outlined">home</span>

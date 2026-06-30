@@ -10,7 +10,7 @@ export default function RestaurantsSkeleton() {
       </div>
       <div className="grid grid-cols-1 gap-4">
         {[1,2,3,4].map(i => (
-          <div key={i} className="bg-white border border-border rounded-[24px] overflow-hidden">
+          <div key={i} className="bg-white border border-border/50 rounded-[24px] overflow-hidden">
             <div className="skeleton h-40 w-full" />
             <div className="p-4 space-y-3">
               <div className="skeleton h-5 w-3/4" />

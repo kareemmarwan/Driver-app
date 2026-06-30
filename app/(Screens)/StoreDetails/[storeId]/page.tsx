@@ -55,18 +55,18 @@ export default function StoreDetails() {
     <div className="bg-background relative flex flex-col w-full min-h-screen" dir="rtl">
 
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 h-16 flex justify-between items-center w-full max-w-6xl mx-auto ${
-        isHeaderActive ? 'bg-white border-b border-border shadow-sm' : 'bg-white/0'
+        isHeaderActive ? 'bg-white border-b border-border/50 shadow-sm' : 'bg-white/0'
       }`}>
-        <Link href="/Restaurants" className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-primary hover:bg-white active:scale-95 border border-border">
+        <Link href="/Restaurants" className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-primary hover:bg-white active:scale-95 border border-border/50">
           <span className="text-2xl transform rotate-180 material-symbols-outlined">arrow_back</span>
         </Link>
         <div className="flex gap-2">
-          <button className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-text-secondary hover:bg-white active:scale-95 border border-border hover:text-primary">
+          <button className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-text-secondary hover:bg-white active:scale-95 border border-border/50 hover:text-primary">
             <span className="text-xl material-symbols-outlined">share</span>
           </button>
           <button
             onClick={() => toggleItem({ id: Number(params.storeId), name: 'مخبز الموقد الذهبي', image: BEST_SELLERS[0]?.image || '', price: '' })}
-            className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm active:scale-95 border border-border hover:bg-white"
+            className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm active:scale-95 border border-border/50 hover:bg-white"
           >
             <span
               className={`material-symbols-outlined text-xl transition-colors ${isWishlisted(Number(params.storeId)) ? 'text-error' : 'text-text-secondary'}`}
@@ -104,12 +104,12 @@ export default function StoreDetails() {
           <p className="mt-1 text-xs sm:text-sm text-text-secondary font-medium">مخبز ومقهى • خبز مخمر طازج • معجنات وحلويات فاخرة</p>
 
           <div className="flex flex-wrap items-center gap-3 mt-3 text-xs text-text-secondary">
-            <div className="flex items-center gap-0.5 bg-surface border border-border px-2 py-0.5 rounded-[8px]">
+            <div className="flex items-center gap-0.5 bg-surface border border-border/50 px-2 py-0.5 rounded-[8px]">
               <span className="material-symbols-outlined text-primary text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
               <span className="font-bold text-text-primary">4.9</span>
               <span className="text-[11px] text-text-secondary/80">(١,٢٤٥ تقييم)</span>
             </div>
-            <div className="flex items-center gap-0.5 bg-surface border border-border px-2 py-0.5 rounded-[8px]">
+            <div className="flex items-center gap-0.5 bg-surface border border-border/50 px-2 py-0.5 rounded-[8px]">
               <span className="material-symbols-outlined text-[16px]">distance</span>
               <span className="font-bold text-text-primary">١.٢ كم</span>
             </div>
@@ -118,7 +118,7 @@ export default function StoreDetails() {
             </div>
           </div>
 
-          <div className="flex gap-4 py-3 mt-5 text-center border-y border-border">
+          <div className="flex gap-4 py-3 mt-5 text-center border-y border-border/50">
             <div className="flex-1">
               <p className="text-[11px] text-text-secondary font-medium">وقت التوصيل</p>
               <p className="text-sm font-bold text-text-primary mt-0.5">١٥-٢٥ دقيقة</p>
@@ -188,7 +188,7 @@ export default function StoreDetails() {
               <div
                 key={item.id}
                 onClick={() => router.push(`/ProductDetailsPage/${item.id}?storeId=${storeId}`)}
-                className="min-w-[190px] bg-white rounded-[24px] shadow-sm overflow-hidden flex-shrink-0 border border-border group transition-all duration-300 hover:shadow-md cursor-pointer"
+                className="min-w-[190px] bg-white rounded-[24px] shadow-sm overflow-hidden flex-shrink-0 border border-border/50 group transition-all duration-300 hover:shadow-md cursor-pointer"
               >
                 <div className="relative w-full h-32">
                   <div className="w-full h-full transition-transform duration-500 bg-center bg-cover group-hover:scale-102" style={{ backgroundImage: `url('${item.image}')` }} />
@@ -228,7 +228,7 @@ export default function StoreDetails() {
               <div
                 key={product.id}
                 onClick={() => router.push(`/ProductDetailsPage/${product.id}?storeId=${storeId}`)}
-                className="bg-white rounded-[24px] shadow-sm overflow-hidden border border-border group transition-all duration-300 hover:shadow-md flex flex-col justify-between cursor-pointer"
+                className="bg-white rounded-[24px] shadow-sm overflow-hidden border border-border/50 group transition-all duration-300 hover:shadow-md flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   <div className="relative w-full h-36">
@@ -247,7 +247,7 @@ export default function StoreDetails() {
                   </div>
                   <div className="p-3.5 pb-0">
                     <h5 className="text-xs font-bold text-text-primary group-hover:text-primary transition-colors line-clamp-2 min-h-[32px]">{product.name}</h5>
-                    <div className="flex items-center gap-0.5 mt-1 bg-surface w-fit px-1.5 py-0.5 rounded-[6px] border border-border">
+                    <div className="flex items-center gap-0.5 mt-1 bg-surface w-fit px-1.5 py-0.5 rounded-[6px] border border-border/50">
                       <span className="material-symbols-outlined text-primary text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                       <span className="text-[11px] text-text-primary font-bold">{product.rating}</span>
                     </div>
@@ -272,14 +272,14 @@ export default function StoreDetails() {
         <section className="max-w-md px-4 mt-8 space-y-4 sm:px-6 md:max-w-full">
           <h3 className="text-sm font-bold sm:text-base text-text-primary">معلومات المتجر</h3>
           <div className="grid grid-cols-1 gap-4 text-xs md:grid-cols-2 text-text-primary">
-            <div className="flex gap-3 p-3.5 bg-white border border-border rounded-[18px]">
+            <div className="flex gap-3 p-3.5 bg-white border border-border/50 rounded-[18px]">
               <span className="text-lg material-symbols-outlined text-primary">location_on</span>
               <div>
                 <p className="font-bold text-text-primary">شارع الحرفيين، الحي الشرقي</p>
                 <p className="text-text-secondary mt-0.5">غزة، فلسطين</p>
               </div>
             </div>
-            <div className="flex gap-3 p-3.5 bg-white border border-border rounded-[18px]">
+            <div className="flex gap-3 p-3.5 bg-white border border-border/50 rounded-[18px]">
               <span className="text-lg material-symbols-outlined text-primary">schedule</span>
               <div>
                 <p className="font-bold text-text-primary">مفتوح يومياً: ٠٧:٠٠ ص - ٠٨:٠٠ م</p>
@@ -288,7 +288,7 @@ export default function StoreDetails() {
             </div>
           </div>
 
-          <div className="p-4 bg-surface border border-border rounded-[24px]">
+          <div className="p-4 bg-surface border border-border/50 rounded-[24px]">
             <div className="flex items-center justify-between mb-2">
               <h4 className="text-xs font-bold text-text-primary">آخر الآراء والتقييمات</h4>
               <button className="text-xs font-bold text-primary">عرض الكل</button>

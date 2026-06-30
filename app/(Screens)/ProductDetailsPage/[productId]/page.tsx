@@ -35,7 +35,7 @@ export default function ProductDetailsPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background text-text-primary antialiased pb-32" dir="rtl">
-        <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white border-b border-border">
+        <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white border-b border-border/50">
           <div className="skeleton w-10 h-10 rounded-full" />
           <div className="skeleton h-5 w-24" />
           <div className="w-10" />
@@ -92,8 +92,8 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background text-text-primary antialiased pb-32" dir="rtl">
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white border-b border-border">
-        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-primary hover:bg-gray-50 active:scale-95 border border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 bg-white border-b border-border/50">
+        <Link href={`/StoreDetails/${storeId}`} className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white rounded-full shadow-sm text-primary hover:bg-gray-50 active:scale-95 border border-border/50">
           <span className="text-2xl material-symbols-outlined">arrow_back</span>
         </Link>
         <h1 className="text-sm font-bold text-text-primary">تفاصيل المنتج</h1>
@@ -223,7 +223,7 @@ export default function ProductDetailsPage() {
         </div>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/80 backdrop-blur-md border-t border-border">
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/80 backdrop-blur-md border-t border-border/50">
         <div className="max-w-lg mx-auto">
           <div className="flex items-center justify-between mb-3 px-1">
             <span className="text-sm text-text-secondary">المجموع الكلي</span>

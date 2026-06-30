@@ -66,7 +66,7 @@ export default function Restaurants() {
   return (
     <div className="bg-background relative flex flex-col w-full min-h-screen" dir="rtl">
 
-      <header className="sticky top-0 z-50 flex items-center justify-between w-full px-4 transition-all border-b border-border shadow-sm sm:px-6 lg:px-8 bg-white h-14 sm:h-16">
+      <header className="sticky top-0 z-50 flex items-center justify-between w-full px-4 transition-all border-b border-border/50 shadow-sm sm:px-6 lg:px-8 bg-white h-14 sm:h-16">
         <div className="flex items-center gap-3 sm:gap-4">
           <button onClick={() => window.history.back()} className="transition-transform duration-200 active:scale-95 text-primary">
             <span className="text-xl transform rotate-180 sm:text-2xl material-symbols-outlined">arrow_back</span>
@@ -86,7 +86,7 @@ export default function Restaurants() {
             <input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-12 text-sm text-right transition-all duration-200 border border-border outline-none sm:text-base h-12 sm:h-14 bg-white rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10"
+              className="w-full pl-12 pr-12 text-sm text-right transition-all duration-200 border border-border/50 outline-none sm:text-base h-12 sm:h-14 bg-white rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10"
               placeholder="ابحث عن مطعم أو وجبة..."
               type="text"
             />
@@ -118,7 +118,7 @@ export default function Restaurants() {
         </section>
 
         <section className="px-4 mt-4 sm:px-6 lg:px-8">
-          <div className="flex items-start gap-3 p-4 bg-white border border-border rounded-2xl shadow-sm">
+          <div className="flex items-start gap-3 p-4 bg-white border border-border/50 rounded-2xl shadow-sm">
             <span className="material-symbols-outlined text-primary flex-shrink-0 text-xl sm:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
               location_on
             </span>
@@ -144,7 +144,7 @@ export default function Restaurants() {
                 <Link
                   key={restaurant.id}
                   href={`/StoreDetails/${restaurant.id}`}
-                  className="bg-white border border-border rounded-[24px] overflow-hidden shadow-sm group active:scale-[0.99] transition-all duration-300 hover:shadow-md hover:border-border cursor-pointer flex flex-col"
+                  className="bg-white border border-border/50 rounded-[24px] overflow-hidden shadow-sm group active:scale-[0.99] transition-all duration-300 hover:shadow-md hover:border-border/50 cursor-pointer flex flex-col"
                 >
                   <div className="relative w-full h-40 overflow-hidden sm:h-48">
                     <div
@@ -200,12 +200,12 @@ export default function Restaurants() {
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between pt-3 mt-4 text-[11px] sm:text-xs border-t border-border text-text-secondary">
-                      <div className="flex items-center gap-1 bg-surface px-2 py-1 rounded-[8px] border border-border">
+                    <div className="flex items-center justify-between pt-3 mt-4 text-[11px] sm:text-xs border-t border-border/50 text-text-secondary">
+                      <div className="flex items-center gap-1 bg-surface px-2 py-1 rounded-[8px] border border-border/50">
                         <span className="text-sm sm:text-base material-symbols-outlined text-text-secondary/70">distance</span>
                         <span>{restaurant.distance}</span>
                       </div>
-                      <div className="flex items-center gap-1 bg-surface px-2 py-1 rounded-[8px] border border-border">
+                      <div className="flex items-center gap-1 bg-surface px-2 py-1 rounded-[8px] border border-border/50">
                         <span className="text-sm sm:text-base material-symbols-outlined text-text-secondary/70">schedule</span>
                         <span>{restaurant.time}</span>
                       </div>

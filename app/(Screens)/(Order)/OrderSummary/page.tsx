@@ -50,7 +50,7 @@ export default function OrderSummary() {
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background text-text-primary flex flex-col relative" dir="rtl">
 
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white shadow-sm flex justify-between items-center px-4 h-16 border-b border-border">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white shadow-sm flex justify-between items-center px-4 h-16 border-b border-border/50">
         <button className="flex items-center justify-center w-10 h-10 transition-colors rounded-full hover:bg-primary/5 active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
@@ -67,7 +67,7 @@ export default function OrderSummary() {
           <p className="mt-1 text-xs text-text-secondary">راجع تفاصيل التوصيل والوجهة بعناية قبل التأكيد</p>
         </div>
 
-        <section className="bg-white rounded-2xl p-4 shadow-sm border border-border flex flex-col gap-4">
+        <section className="bg-white rounded-2xl p-4 shadow-sm border border-border/50 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-2 text-sm font-bold text-primary">
               <span className="text-lg material-symbols-outlined">route</span>
@@ -83,7 +83,7 @@ export default function OrderSummary() {
                 <div className="z-10 flex items-center justify-center w-6 h-6 rounded-full shadow-sm bg-primary">
                   <span className="text-xs text-white material-symbols-outlined">trip_origin</span>
                 </div>
-                <div className="absolute right-[11px] top-6 bottom-[-30px] w-0 border-r-2 border-dashed border-border" />
+                <div className="absolute right-[11px] top-6 bottom-[-30px] w-0 border-r-2 border-dashed border-border/50" />
               </div>
               <div className="flex-1 text-right">
                 <p className="text-[10px] font-bold text-text-secondary uppercase tracking-wider">نقطة الاستلام (من)</p>
@@ -107,12 +107,12 @@ export default function OrderSummary() {
           </div>
         </section>
 
-        <section className="bg-white rounded-2xl p-4 shadow-sm border border-border">
+        <section className="bg-white rounded-2xl p-4 shadow-sm border border-border/50">
           <h3 className="mb-3 text-sm font-bold text-primary">محتويات الطلب</h3>
           <div className="space-y-3">
             {currentOrder.items.map((item) => (
               <div key={item.id} className="flex items-start gap-3">
-                <div className="w-14 h-14 overflow-hidden border shadow-sm rounded-xl bg-surface shrink-0 border-border">
+                <div className="w-14 h-14 overflow-hidden border shadow-sm rounded-xl bg-surface shrink-0 border-border/50">
                   <img className="object-cover w-full h-full" src={item.image} alt={item.name} />
                 </div>
                 <div className="flex-1 text-right">
@@ -128,7 +128,7 @@ export default function OrderSummary() {
           </div>
         </section>
 
-        <section className="bg-white rounded-2xl p-4 shadow-sm border border-border">
+        <section className="bg-white rounded-2xl p-4 shadow-sm border border-border/50">
           <h3 className="mb-3 text-sm font-bold text-primary">ملخص الرسوم المالي</h3>
           <div className="space-y-3 text-xs">
             <div className="flex items-center justify-between">
@@ -152,7 +152,7 @@ export default function OrderSummary() {
           </div>
         </section>
 
-        <div className="h-32 overflow-hidden border shadow-sm rounded-2xl border-border grayscale opacity-80">
+        <div className="h-32 overflow-hidden border shadow-sm rounded-2xl border-border/50 grayscale opacity-80">
           <img className="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZEn8juJJamZi2psisQo_Mkpib_udnUjbL0uP6naqWtXYrIuxoDtuhHVlTLvvuvQaQUriawAv-nve9cvb9SuRVheDri-sBJWgk74kbKUvGJZbJmCuxEL8oAhLfu6KzPxPSLoYEN94LfNBuexJlc1bUBevDvHj-u-qCY5wRPQfbQCA9wURVvMEEIsNy2xoGnI5F5zGu493VzUkfxHBqS0izYtY0nN-eECNQr_399SOdRlX8oi9vDn0watuzCBhSgPKuq7f0C7eypw8" alt="خريطة المسار المصغرة للتوصيل" />
         </div>
 
@@ -164,7 +164,7 @@ export default function OrderSummary() {
             <p className="text-[11px] font-bold text-text-secondary">إجمالي المبلغ النهائي</p>
             <p className="mt-1 font-mono text-xl font-extrabold leading-none text-primary">₪{currentOrder.total.toFixed(2)}</p>
           </div>
-          <div className="flex items-center gap-1.5 text-text-primary text-xs font-bold bg-surface px-2.5 py-1.5 rounded-full border border-border">
+          <div className="flex items-center gap-1.5 text-text-primary text-xs font-bold bg-surface px-2.5 py-1.5 rounded-full border border-border/50">
             <span className="text-base text-primary material-symbols-outlined">account_balance_wallet</span>
             <span>الدفع {currentOrder.paymentMethod === 'cod' ? 'عند الاستلام' : 'ببطاقة ائتمان'}</span>
           </div>

@@ -24,7 +24,7 @@ export default function OrdersPage() {
 
   return (
     <div className="min-h-screen bg-background pb-32">
-      <header className="sticky top-0 z-50 bg-background px-4 pt-4 pb-2">
+      <header className="sticky top-0 z-50 bg-white px-4 pt-4 pb-2">
         <h1 className="text-2xl font-bold text-text-primary text-right">طلباتي</h1>
         <div className="flex gap-2 mt-3 bg-surface rounded-2xl p-1">
           <button
@@ -57,7 +57,7 @@ export default function OrdersPage() {
               <Link
                 key={order.id}
                 href="/OrderSummary"
-                className="block bg-white rounded-2xl p-4 shadow-sm border border-border active:scale-[0.98] transition-transform"
+                className="block bg-white rounded-2xl p-4 shadow-sm border border-border/50 active:scale-[0.98] transition-transform"
               >
                 <div className="flex gap-3">
                   <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface shrink-0">
@@ -106,7 +106,7 @@ export default function OrdersPage() {
             pastOrders.map((order) => (
               <div
                 key={order.id}
-                className="bg-white rounded-2xl p-4 shadow-sm border border-border active:scale-[0.98] transition-transform cursor-pointer"
+                className="bg-white rounded-2xl p-4 shadow-sm border border-border/50 active:scale-[0.98] transition-transform cursor-pointer"
               >
                 <div className="flex gap-3">
                   <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface shrink-0">

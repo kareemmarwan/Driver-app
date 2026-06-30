@@ -79,7 +79,7 @@ export default function OrderConfirmedScreen() {
 
             <div className="flex justify-around items-center pt-2">
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 rounded-full overflow-hidden mb-2 border-2 border-border">
+                <div className="w-12 h-12 rounded-full overflow-hidden mb-2 border-2 border-border/50">
                   <Image
                     className="w-full h-full object-cover grayscale opacity-50"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPrzivhUpolYp6lac8UjoBM_gjUYf_vCbR1VX6lXlid29l38jRkNVcfp5if_HB-NBegfealScy9keYxNtSVTKitiDVmRUn7FLFRdQjfdizYP7N7rDK1SZ8EqUdRYi6-P6c_8XFbxO61mSAX6MrNQNDwHYSqkvy5I2RdJYMRha5YnsdHmwTHDhmU-_sfGqd-2k_W_qqgbxdXq5sC49GPk0d4gGXNbFyHGfVKZN-yFA6jURfVkAs2KPQ5N-sdrfhVVH8wrunHY1bBlQ"

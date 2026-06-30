@@ -38,7 +38,7 @@ export default function FilterDeliveryAreaPage() {
     <div className="max-w-md mx-auto min-h-screen bg-background flex flex-col relative overflow-hidden">
 
       <div className="w-full p-4 space-y-4 opacity-40 pointer-events-none">
-        <header className="flex justify-between items-center h-16 border-b border-border">
+        <header className="flex justify-between items-center h-16 border-b border-border/50">
           <div className="flex items-center gap-4 text-primary">
             <span className="material-symbols-outlined">arrow_back</span>
             <span className="font-bold text-xl">دري فري</span>
@@ -58,7 +58,7 @@ export default function FilterDeliveryAreaPage() {
 
           <div className="bg-white w-full max-w-xl rounded-t-3xl md:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85dvh] md:max-h-[795px] transition-transform duration-300 translate-y-0">
 
-            <div className="px-6 py-5 border-b border-border flex items-center justify-between">
+            <div className="px-6 py-5 border-b border-border/50 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-primary">
                   <span className="material-symbols-outlined">location_on</span>
@@ -131,7 +131,7 @@ export default function FilterDeliveryAreaPage() {
                           <span className={`material-symbols-outlined transition-colors ${isSelected ? 'text-primary' : 'text-text-secondary group-hover:text-primary'}`}>
                             home_pin
                           </span>
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-primary' : 'border-border group-hover:border-primary'}`}>
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-primary' : 'border-border/50 group-hover:border-primary'}`}>
                             <div className={`w-2.5 h-2.5 rounded-full bg-primary transition-transform duration-200 ${isSelected ? 'scale-100' : 'scale-0'}`} />
                           </div>
                         </div>
@@ -143,7 +143,7 @@ export default function FilterDeliveryAreaPage() {
               </section>
             </div>
 
-            <div className="px-6 py-5 border-t border-border bg-surface flex flex-col sm:flex-row-reverse gap-3">
+            <div className="px-6 py-5 border-t border-border/50 bg-surface flex flex-col sm:flex-row-reverse gap-3">
               <button
                 onClick={handleApply}
                 className="flex-1 h-14 bg-primary text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all duration-200"
@@ -153,7 +153,7 @@ export default function FilterDeliveryAreaPage() {
               </button>
               <button
                 onClick={handleReset}
-                className="px-8 h-14 bg-white text-text-secondary border border-border font-medium rounded-2xl hover:bg-surface active:scale-95 transition-all duration-200"
+                className="px-8 h-14 bg-white text-text-secondary border border-border/50 font-medium rounded-2xl hover:bg-surface active:scale-95 transition-all duration-200"
               >
                 إعادة ضبط
               </button>

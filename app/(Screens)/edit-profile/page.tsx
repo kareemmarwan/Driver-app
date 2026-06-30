@@ -30,7 +30,7 @@ export default function EditProfilePage() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-border/50 bg-white text-text-primary focus:outline-none focus:border-primary"
             />
           </div>
 
@@ -40,7 +40,7 @@ export default function EditProfilePage() {
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-border/50 bg-white text-text-primary focus:outline-none focus:border-primary"
             />
           </div>
 
@@ -50,7 +50,7 @@ export default function EditProfilePage() {
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text-primary focus:outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-border/50 bg-white text-text-primary focus:outline-none focus:border-primary"
             />
           </div>
 
