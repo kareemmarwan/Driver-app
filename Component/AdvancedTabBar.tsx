@@ -40,7 +40,7 @@ export default function AdvancedTabBar() {
   const activeIndex = getTabIndex(activeTab);
 
   return (
-    <div className="relative bg-white/90 backdrop-blur-xl border border-border shadow-lg rounded-[24px] px-2 py-2 flex items-center justify-around mx-4 mb-2">
+    <div className="relative bg-white/90 backdrop-blur-xl border-t border-border shadow-lg px-2 py-2 flex items-center justify-around">
       <div
         className="absolute top-2 bottom-2 bg-primary-light rounded-[18px] transition-all duration-300 ease-out z-0"
         style={{

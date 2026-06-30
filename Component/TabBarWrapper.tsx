@@ -22,9 +22,9 @@ export default function TabBarWrapper({ children }: { children: React.ReactNode 
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 pb-16">{children}</div>
       {!shouldHide && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 pb-1 bg-background">
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-background">
           <AdvancedTabBar />
         </div>
       )}
