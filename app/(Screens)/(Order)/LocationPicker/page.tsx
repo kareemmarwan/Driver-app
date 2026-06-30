@@ -41,47 +41,48 @@ export default function LocationPicker() {
   }, []);
 
   return (
+    <GoogleMapsProvider>
     <div className="relative w-full h-[calc(100vh-80px)] bg-background text-text-primary overflow-hidden font-cairo pb-24" dir="rtl">
       <header className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between w-full h-16 px-4 bg-white border-b shadow-sm border-border/50">
         <button onClick={() => router.back()} className="flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-full bg-surface hover:bg-primary/5 active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>
-        <h1 className="text-base font-bold text-primary">تحديد sssموقع التسليم</h1>
+        <h1 className="text-base font-bold text-primary">تحديد موقع التسليم</h1>
         <div className="flex items-center justify-center w-10">
           <span className="font-mono text-sm font-bold text-primary">2/3</span>
         </div>
       </header>
 
-      <GoogleMapsProvider>
-        <div className="absolute inset-0 z-0 w-full h-full">
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={position}
-            zoom={14}
-            options={{
-              disableDefaultUI: false,
-              zoomControl: true,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: false,
-            }}
-          >
-            <Marker
-              position={position}
-              draggable
-              onDragEnd={onMarkerDragEnd}
-              title="اسحب لتحديد الموقع"
-            />
-          </GoogleMap>
-        </div>
-      </GoogleMapsProvider>
+      <div className="absolute inset-0 z-0 w-full h-full">
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={position}
+          zoom={14}
+          options={{
+            disableDefaultUI: false,
+            zoomControl: true,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+          }}
+        >
+          <Marker
+            position={position}
+            draggable
+            onDragEnd={onMarkerDragEnd}
+            title="اسحب لتحديد الموقع"
+          />
+        </GoogleMap>
+      </div>
 
       <button
         aria-label="الموقع الحالي"
         onClick={() => {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-              (pos) => setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude })
+              (pos) => setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+              () => {},
+              { enableHighAccuracy: true, timeout: 5000 }
             );
           }
         }}
@@ -173,5 +174,6 @@ export default function LocationPicker() {
         </div>
       </div>
     </div>
+    </GoogleMapsProvider>
   );
 }
