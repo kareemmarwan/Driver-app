@@ -32,7 +32,7 @@ export default function PaymentMethods() {
   return (
     <div className="relative flex flex-col max-w-md min-h-screen mx-auto bg-background text-text-primary" dir="rtl">
 
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white/90 backdrop-blur-md shadow-sm flex flex-row justify-between items-center px-4 h-16 border-b border-border">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-40 bg-white shadow-sm flex flex-row justify-between items-center px-4 h-16 border-b border-border">
         <button className="w-10 h-10 flex items-center justify-center rounded-full bg-surface hover:bg-primary/5 transition-colors active:scale-95 duration-150 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>

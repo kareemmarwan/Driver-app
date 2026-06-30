@@ -55,7 +55,7 @@ export default function StoreDetails() {
     <div className="bg-background relative flex flex-col w-full min-h-screen" dir="rtl">
 
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 h-16 flex justify-between items-center w-full max-w-6xl mx-auto ${
-        isHeaderActive ? 'bg-white/95 backdrop-blur-xl border-b border-border shadow-sm' : 'bg-transparent'
+        isHeaderActive ? 'bg-white border-b border-border shadow-sm' : 'bg-white/0'
       }`}>
         <Link href="/Restaurants" className="flex items-center justify-center w-10 h-10 transition-all duration-200 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-primary hover:bg-white active:scale-95 border border-border">
           <span className="text-2xl transform rotate-180 material-symbols-outlined">arrow_back</span>

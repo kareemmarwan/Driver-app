@@ -39,7 +39,7 @@ export default function PickupLocationPage() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden antialiased bg-slate-50 text-slate-900" dir="rtl">
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full max-w-md px-4 py-2 mx-auto shadow-sm bg-white/80 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full max-w-md px-4 py-2 mx-auto shadow-sm bg-white">
         <button className="flex items-center justify-center w-10 h-10 transition-colors rounded-full bg-slate-50 hover:bg-slate-100 active:scale-95 text-primary">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>

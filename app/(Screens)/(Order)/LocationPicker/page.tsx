@@ -40,7 +40,7 @@ export default function LocationPicker() {
 
   return (
     <div className="relative w-full h-[calc(100vh-80px)] bg-[#F8FAFC] text-[#2d3732] overflow-hidden font-cairo pb-24" dir="rtl">
-      <header className="absolute top-0 left-0 right-0 w-full z-40 bg-white/90 backdrop-blur-md shadow-[0px_4px_20px_rgba(0,109,52,0.03)] flex justify-between items-center px-4 h-16 border-b border-[#bbcbba]/10">
+      <header className="absolute top-0 left-0 right-0 w-full z-40 bg-white shadow-[0px_4px_20px_rgba(0,109,52,0.03)] flex justify-between items-center px-4 h-16 border-b border-[#bbcbba]/10">
         <button className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 hover:bg-[#006d34]/5 transition-colors active:scale-95 duration-150 text-[#006d34]">
           <span className="transform rotate-180 material-symbols-outlined">arrow_back</span>
         </button>

@@ -16,7 +16,7 @@ module.exports = {
         "dark-gray": "#2B2B2B",
         background: "#FFFFFF",
         surface: "#F8F8F8",
-        border: "#E5E5E5",
+        border: "#F0F0F0",
         "text-primary": "#111111",
         "text-secondary": "#666666",
         success: "#22C55E",

@@ -46,7 +46,7 @@ export default function LiveTrackingPage() {
   return (
     <div className="relative w-full h-screen overflow-hidden font-sans select-none bg-slate-50 text-slate-900" dir="rtl">
 
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full h-16 max-w-md px-4 mx-auto border-b shadow-sm bg-white/80 backdrop-blur-lg border-slate-100">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full h-16 max-w-md px-4 mx-auto border-b shadow-sm bg-white border-slate-100">
         <div className="flex items-center gap-3">
           <button className="flex items-center justify-center w-10 h-10 transition-all rounded-full hover:bg-slate-100 active:scale-95 text-slate-700 bg-slate-50/50">
             <span className="font-semibold material-symbols-outlined">arrow_forward</span>

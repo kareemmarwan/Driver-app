@@ -66,7 +66,7 @@ export default function Restaurants() {
   return (
     <div className="bg-background relative flex flex-col w-full min-h-screen" dir="rtl">
 
-      <header className="sticky top-0 z-50 flex items-center justify-between w-full px-4 transition-all border-b border-border shadow-sm sm:px-6 lg:px-8 bg-white/90 backdrop-blur-md h-14 sm:h-16">
+      <header className="sticky top-0 z-50 flex items-center justify-between w-full px-4 transition-all border-b border-border shadow-sm sm:px-6 lg:px-8 bg-white h-14 sm:h-16">
         <div className="flex items-center gap-3 sm:gap-4">
           <button onClick={() => window.history.back()} className="transition-transform duration-200 active:scale-95 text-primary">
             <span className="text-xl transform rotate-180 sm:text-2xl material-symbols-outlined">arrow_back</span>
